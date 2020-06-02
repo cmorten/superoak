@@ -24,13 +24,13 @@ import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
 If you want to use a specific version of SuperOak, just modify the import url to contain the version:
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@0.3.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@1.0.1/mod.ts";
 ```
 
 Or if you want to use a specific commit of SuperOak, just modify the import url to contain the commit hash:
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@c21f8d6/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@c4eb4a8/mod.ts";
 ```
 
 ## Example
