@@ -1,10 +1,4 @@
-import {
-  superdeno,
-  Server,
-  SuperDeno,
-  Application,
-  getFreePort,
-} from "../deps.ts";
+import { superdeno, Server, SuperDeno, getFreePort } from "../deps.ts";
 
 /**
  * Generates a random number between min and max
@@ -16,6 +10,21 @@ import {
  */
 function random(min: number, max: number): number {
   return Math.round(Math.random() * (max - min)) + min;
+}
+
+// TODO: this should be handled with better type logic as is brittle to
+// Oak API interface changes.
+/**
+ * Duck typing to determine if is Oak application like.
+ * 
+ * @param {any} thing
+ * 
+ * @returns {boolean}
+ * @private
+ */
+function isOakApplication(thing: any): boolean {
+  return typeof thing === "object" && typeof thing?.listen === "function" &&
+    typeof thing?.addEventListener === "function";
 }
 
 /**
@@ -34,29 +43,38 @@ function random(min: number, max: number): number {
  * @public
  */
 export async function superoak(
-  app: string | Application,
+  app: string | any,
   secure?: boolean,
 ): Promise<SuperDeno> {
-  if (app instanceof Application) {
+  if (isOakApplication(app)) {
     const controller = new AbortController();
     const { signal } = controller;
 
     return await new Promise(async (resolve) => {
-      app.addEventListener("listen", ({ hostname, port, secure }) => {
-        const serverSham: Server = Object.create(Server.prototype);
-
-        serverSham.close = () => controller.abort();
-
-        serverSham.listener = {
-          addr: {
-            port,
-            hostname: hostname as string,
-            transport: "tcp",
+      app.addEventListener(
+        "listen",
+        (
+          { hostname, port, secure }: {
+            hostname: string;
+            port: number;
+            secure: boolean;
           },
-        } as any;
+        ) => {
+          const serverSham: Server = Object.create(Server.prototype);
 
-        resolve(superdeno(serverSham, secure));
-      });
+          serverSham.close = () => controller.abort();
+
+          serverSham.listener = {
+            addr: {
+              port,
+              hostname: hostname as string,
+              transport: "tcp",
+            },
+          } as any;
+
+          resolve(superdeno(serverSham, secure));
+        },
+      );
 
       const freePort = await getFreePort(random(1024, 49151));
 

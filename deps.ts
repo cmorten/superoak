@@ -6,7 +6,6 @@ export {
   IRequest,
   IResponse,
 } from "https://deno.land/x/superdeno@1.1.1/mod.ts";
-export * from "https://deno.land/x/oak@v5.0.0/mod.ts";
 export { methods } from "https://deno.land/x/opine@0.8.0/mod.ts";
 export {
   getFreePort,
