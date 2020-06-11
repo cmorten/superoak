@@ -80,37 +80,39 @@
 				<p>You can then import SuperOak straight into your project:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;</code></pre>
 				<p>If you want to use a specific version of SuperOak, just modify the import url to contain the version:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@0.3.0/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@1.0.1/mod.ts"</span>;</code></pre>
 				<p>Or if you want to use a specific commit of SuperOak, just modify the import url to contain the commit hash:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@c21f8d6/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@c4eb4a8/mod.ts"</span>;</code></pre>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
 				<p>You may pass a url string (for an already running Oak server), or an Oak <code>Application</code> object to <code>superoak()</code> - when passing an Oak <code>Application</code>, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
-				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework, note how you can pass <code>done</code> straight to any of the <code>.expect()</code> calls:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;
-<span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/oak@master/mod.ts"</span>;
+				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/oak@master/mod.ts"</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;
 
-Deno.test(<span class="hljs-string">"it should support the Oak framework"</span>, <span class="hljs-function">(<span class="hljs-params">done</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-  router.get(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-    ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
-  });
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+router.get(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+  ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
+});
 
-  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
-  app.use(router.routes());
-  app.use(router.allowedMethods());
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
+app.use(router.routes());
+app.use(router.allowedMethods());
 
+Deno.test(<span class="hljs-string">"it should support the Oak framework"</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
-  request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-string">"Hello Deno!"</span>, done);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
 });</code></pre>
-				<p>For further examples, see the <a href="./test/superoak.test.ts">tests</a> or the <a href="https://github.com/asos-craigmorten/superdeno#example">SuperDeno examples</a> for inspiration.</p>
+				<p>Save the above to a file <code>demo.test.ts</code> and test it using <code>deno test --allow-net demo.test.ts</code>.</p>
+				<p>For further examples, see the <a href="https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md">SuperOak examples</a>, <a href="https://github.com/asos-craigmorten/superoak/blob/master/test/superoak.test.ts">tests</a> or the <a href="https://github.com/asos-craigmorten/superdeno#example">SuperDeno examples</a> for inspiration.</p>
 				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
 					<h2>Docs</h2>
 				</a>
 				<ul>
 					<li><a href="https://asos-craigmorten.github.io/superoak/">SuperOak Type Docs</a></li>
 					<li><a href="https://doc.deno.land/https/deno.land/x/superoak/mod.ts">SuperOak Deno Docs</a></li>
+					<li><a href="https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md">SuperOak Examples</a></li>
 					<li><a href="https://github.com/asos-craigmorten/superoak/blob/master/LICENSE.md">License</a></li>
 					<li><a href="https://github.com/asos-craigmorten/superoak/blob/master/.github/CHANGELOG.md">Changelog</a></li>
 				</ul>
@@ -124,60 +126,39 @@ Deno.test(<span class="hljs-string">"it should support the Oak framework"</span>
 				<ul>
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call a method such as <code>.get(&quot;/&quot;)</code>.</p>
 					</li>
-					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. For example the following example will fail due to this limitation:</p>
-						<pre><code class="language-ts">Deno.test(
-  <span class="hljs-string">"it will throw a `Request has been terminated` error when trying to use an ended SuperOak object"</span>,
-  <span class="hljs-keyword">async</span> (done) =&gt; {
-    <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-    <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
+					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
+						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/oak@master/mod.ts"</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;
 
-    router.get(<span class="hljs-string">"/"</span>, <span class="hljs-keyword">async</span> (ctx: RouterContext) =&gt; {
-      ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
-    });
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
 
-    app.use(router.routes());
-    app.use(router.allowedMethods());
+router.get(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+  ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
+});
 
-    <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-    request.get(<span class="hljs-string">"/"</span>).end(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-      request.get(<span class="hljs-string">"/"</span>).end(<span class="hljs-function">(<span class="hljs-params">err, res</span>) =&gt;</span> {
-        <span class="hljs-comment">/**
-         * This will have the following error:
-         *
-         * Error: Request has been terminated
-         * Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
-         * ...
-         */</span>
-        expect(err).toBeNull();
-        done();
-      });
-    });
-  }
-);</code></pre>
-						<p>Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
-						<pre><code class="language-ts">Deno.test(
-  <span class="hljs-string">"it will allow your to re-use the Application for another SuperOak instance"</span>,
-  <span class="hljs-keyword">async</span> (done) =&gt; {
-    <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-    <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
-
-    router.get(<span class="hljs-string">"/"</span>, <span class="hljs-keyword">async</span> (ctx: RouterContext) =&gt; {
-      ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
-    });
-
-    app.use(router.routes());
-    app.use(router.allowedMethods());
-
+Deno.test(
+  <span class="hljs-string">"it will allow your to make multiple assertions on one SuperOak instance"</span>,
+  <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
 
-    request.get(<span class="hljs-string">"/"</span>).end(<span class="hljs-keyword">async</span> () =&gt; {
-      request = <span class="hljs-keyword">await</span> superoak(app);
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
+  }
+);
 
-      request.get(<span class="hljs-string">"/"</span>).end(<span class="hljs-function">(<span class="hljs-params">err, res</span>) =&gt;</span> {
-        expect(err).toBeNull();
-        done();
-    });
+Deno.test(
+  <span class="hljs-string">"it will allow your to re-use the Application for another SuperOak instance"</span>,
+  <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
+
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-number">200</span>);
+
+    request = <span class="hljs-keyword">await</span> superoak(app);
+
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
   }
 );</code></pre>
 					</li>
