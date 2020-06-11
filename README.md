@@ -37,11 +37,11 @@ import { superoak } from "https://deno.land/x/superoak@c4eb4a8/mod.ts";
 
 You may pass a url string (for an already running Oak server), or an Oak `Application` object to `superoak()` - when passing an Oak `Application`, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to `.end()`.
 
-SuperOak works with any Deno test framework. Here's an example with Deno's built-in test framework, note how you can pass `done` straight to any of the `.expect()` calls:
+SuperOak works with any Deno test framework. Here's an example with Deno's built-in test framework.
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
 import { Application, Router } from "https://deno.land/x/oak@master/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
@@ -52,18 +52,21 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-Deno.test("it should support the Oak framework", () => {
+Deno.test("it should support the Oak framework", async () => {
   const request = await superoak(app);
-  await request.get("/").expect("Hello Deno!", done);
+  await request.get("/").expect("Hello Deno!");
 });
 ```
 
-For further examples, see the [tests](./test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
+Save the above to a file `demo.test.ts` and test it using `deno test --allow-net demo.test.ts`.
+
+For further examples, see the [SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md), [tests](https://github.com/asos-craigmorten/superoak/blob/master/test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
 
 ## Docs
 
 - [SuperOak Type Docs](https://asos-craigmorten.github.io/superoak/)
 - [SuperOak Deno Docs](https://doc.deno.land/https/deno.land/x/superoak/mod.ts)
+- [SuperOak Examples](https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md)
 - [License](https://github.com/asos-craigmorten/superoak/blob/master/LICENSE.md)
 - [Changelog](https://github.com/asos-craigmorten/superoak/blob/master/.github/CHANGELOG.md)
 
@@ -74,65 +77,41 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
 ## Notes
 
 - Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), `superoak()` returns a promise which will need to be awaited before you can call a method such as `.get("/")`.
-- Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot re-use a SuperOak instance once the chained `.end()` method has been called. This is because SuperOak will automatically close the server once the chained `.end()` method is called. For example the following example will fail due to this limitation:
+- Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot re-use a SuperOak instance once the chained `.end()` method has been called. This is because SuperOak will automatically close the server once the chained `.end()` method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:
 
   ```ts
+  import { Application, Router } from "https://deno.land/x/oak@master/mod.ts";
+  import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
+
   const router = new Router();
   const app = new Application();
 
-  router.get("/", async (ctx: RouterContext) => {
+  router.get("/", (ctx) => {
     ctx.response.body = "Hello Deno!";
   });
 
   app.use(router.routes());
   app.use(router.allowedMethods());
-  
-  Deno.test(
-    "it will throw a `Request has been terminated` error when trying to use an ended SuperOak object",
-    async () => {
-      const request = await superoak(app);
 
-      await request.get("/").end(async () => {
-        await request.get("/").end((err, res) => {
-          /**
-           * This will have the following error:
-           *
-           * Error: Request has been terminated
-           * Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
-           * ...
-           */
-          expect(err).toBeNull();
-        });
-      });
+  Deno.test(
+    "it will allow your to make multiple assertions on one SuperOak instance",
+    async () => {
+      let request = await superoak(app);
+
+      await request.get("/").expect(200).expect("Hello Deno!");
     }
   );
-  ```
 
-  Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:
-
-  ```ts
-  const router = new Router();
-  const app = new Application();
-
-  router.get("/", async (ctx: RouterContext) => {
-    ctx.response.body = "Hello Deno!";
-  });
-
-  app.use(router.routes());
-  app.use(router.allowedMethods());
-  
   Deno.test(
     "it will allow your to re-use the Application for another SuperOak instance",
     async () => {
       let request = await superoak(app);
 
-      await request.get("/").end(async () => {
-        request = await superoak(app);
+      await request.get("/").expect(200);
 
-        await request.get("/").end((err, res) => {
-          expect(err).toBeNull();
-          done();
-      });
+      request = await superoak(app);
+
+      await request.get("/").expect("Hello Deno!");
     }
   );
   ```
