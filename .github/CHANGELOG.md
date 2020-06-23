@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.1.1] - 23-06-2020
+
+- fix: examples using incorrect branch for Oak.
+
 ## [1.1.0] - 23-06-2020
 
 - chore: update dependencies.
