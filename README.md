@@ -3,7 +3,7 @@
   <h1 align="center">SuperOak</h1>
 </p>
 <p align="center">
-HTTP assertions for Deno's Oak web framework made easy via [SuperDeno](https://github.com/asos-craigmorten/superdeno).
+  HTTP assertions for Deno's Oak web framework made easy via <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>.
 </p>
 <p align="center">
    <a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="Current version" /></a>
