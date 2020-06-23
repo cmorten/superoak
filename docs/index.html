@@ -62,12 +62,39 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#superoak" id="superoak" style="color: inherit; text-decoration: none;">
-					<h1>superoak</h1>
+				<p align="center">
+					<a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/asos-craigmorten/superoak/raw/master/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
+					<h1 align="center">SuperOak</h1>
+				</p>
+				<p align="center">
+					HTTP assertions for Deno's Oak web framework made easy via [SuperDeno](https://github.com/asos-craigmorten/superdeno).
+				</p>
+				<p align="center">
+					<a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="Current version" /></a>
+					<img src="https://github.com/asos-craigmorten/superoak/workflows/Test/badge.svg" alt="Current test status" />
+					<a href="https://doc.deno.land/https/deno.land/x/superoak/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="SuperOak docs" /></a>
+					<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
+					<a href="https://github.com/asos-craigmorten/superoak/issues/"><img src="https://img.shields.io/github/issues/asos-craigmorten/superoak" alt="SuperOak issues" /></a>
+					<img src="https://img.shields.io/github/stars/asos-craigmorten/superoak" alt="SuperOak stars" />
+					<img src="https://img.shields.io/github/forks/asos-craigmorten/superoak" alt="SuperOak forks" />
+					<img src="https://img.shields.io/github/license/asos-craigmorten/superoak" alt="SuperOak license" />
+					<a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
+					<a href="http://hits.dwyl.com/asos-craigmorten/superoak"><img src="http://hits.dwyl.com/asos-craigmorten/superoak.svg" alt="SuperOak repository visit count" /></a>
+				</p>
+				<hr>
+				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>Table of Contents</h2>
 				</a>
-				<p>HTTP assertions for Deno&#39;s Oak web framework made easy via <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>.</p>
-				<p><a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="GitHub tag"></a> <img src="https://github.com/asos-craigmorten/superoak/workflows/Test/badge.svg" alt="Test"> <a href="https://doc.deno.land/https/deno.land/x/superoak/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="deno doc"></a> <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a> <a href="https://img.shields.io/github/issues/asos-craigmorten/superoak"><img src="https://img.shields.io/github/issues/asos-craigmorten/superoak" alt="GitHub issues"></a>
-				<img src="https://img.shields.io/github/stars/asos-craigmorten/superoak" alt="GitHub stars"> <img src="https://img.shields.io/github/forks/asos-craigmorten/superoak" alt="GitHub forks"> <img src="https://img.shields.io/github/license/asos-craigmorten/superoak" alt="superoak License"> <a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="Maintenance"></a> <a href="http://hits.dwyl.com/asos-craigmorten/superoak"><img src="http://hits.dwyl.com/asos-craigmorten/superoak.svg" alt="HitCount"></a></p>
+				<ul>
+					<li><a href="#about">About</a></li>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#example">Example</a></li>
+					<li><a href="#documentation">Documentation</a></li>
+					<li><a href="#api">API</a></li>
+					<li><a href="#notes">Notes</a></li>
+					<li><a href="#contributing">Contributing</a></li>
+					<li><a href="#license">License</a></li>
+				</ul>
 				<a href="#about" id="about" style="color: inherit; text-decoration: none;">
 					<h2>About</h2>
 				</a>
@@ -78,36 +105,36 @@
 				<p>This is a <a href="https://deno.land/">Deno</a> module available to import direct from this repo and via the <a href="https://deno.land/x">Deno Registry</a>.</p>
 				<p>Before importing, <a href="https://deno.land/#installation">download and install Deno</a>.</p>
 				<p>You can then import SuperOak straight into your project:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@master/mod.ts&quot;</span>;</code></pre>
 				<p>If you want to use a specific version of SuperOak, just modify the import url to contain the version:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@1.0.1/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@1.0.1/mod.ts&quot;</span>;</code></pre>
 				<p>Or if you want to use a specific commit of SuperOak, just modify the import url to contain the commit hash:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@c4eb4a8/mod.ts"</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@c4eb4a8/mod.ts&quot;</span>;</code></pre>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
 				<p>You may pass a url string (for an already running Oak server), or an Oak <code>Application</code> object to <code>superoak()</code> - when passing an Oak <code>Application</code>, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
 				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/oak@master/mod.ts"</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@master/mod.ts&quot;</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@master/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-router.get(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-  ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
+router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+  ctx.response.body = <span class="hljs-string">&quot;Hello Deno!&quot;</span>;
 });
 
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-Deno.test(<span class="hljs-string">"it should support the Oak framework"</span>, <span class="hljs-keyword">async</span> () =&gt; {
+Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
-  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
 });</code></pre>
 				<p>Save the above to a file <code>demo.test.ts</code> and test it using <code>deno test --allow-net demo.test.ts</code>.</p>
 				<p>For further examples, see the <a href="https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md">SuperOak examples</a>, <a href="https://github.com/asos-craigmorten/superoak/blob/master/test/superoak.test.ts">tests</a> or the <a href="https://github.com/asos-craigmorten/superdeno#example">SuperDeno examples</a> for inspiration.</p>
-				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
-					<h2>Docs</h2>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
 				</a>
 				<ul>
 					<li><a href="https://asos-craigmorten.github.io/superoak/">SuperOak Type Docs</a></li>
@@ -127,38 +154,38 @@ Deno.test(<span class="hljs-string">"it should support the Oak framework"</span>
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call a method such as <code>.get(&quot;/&quot;)</code>.</p>
 					</li>
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
-						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/oak@master/mod.ts"</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">"https://deno.land/x/superoak@master/mod.ts"</span>;
+						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@master/mod.ts&quot;</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@master/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
 
-router.get(<span class="hljs-string">"/"</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-  ctx.response.body = <span class="hljs-string">"Hello Deno!"</span>;
+router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
+  ctx.response.body = <span class="hljs-string">&quot;Hello Deno!&quot;</span>;
 });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
 
 Deno.test(
-  <span class="hljs-string">"it will allow your to make multiple assertions on one SuperOak instance"</span>,
+  <span class="hljs-string">&quot;it will allow your to make multiple assertions on one SuperOak instance&quot;</span>,
   <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
 
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
   }
 );
 
 Deno.test(
-  <span class="hljs-string">"it will allow your to re-use the Application for another SuperOak instance"</span>,
+  <span class="hljs-string">&quot;it will allow your to re-use the Application for another SuperOak instance&quot;</span>,
   <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
 
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-number">200</span>);
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>);
 
     request = <span class="hljs-keyword">await</span> superoak(app);
 
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">"/"</span>).expect(<span class="hljs-string">"Hello Deno!"</span>);
+    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
   }
 );</code></pre>
 					</li>
@@ -172,6 +199,7 @@ Deno.test(
 					<h2>License</h2>
 				</a>
 				<p>SuperOak is licensed under the <a href="./LICENSE.md">MIT License</a>.</p>
+				<p>Icon designed and created by <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/">Hannah Morten</a>.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [1.1.0] - 23-06-2020
+
+- chore: update dependencies.
+- feat: support <https://nest.land> registry.
+- docs: update README.md with SuperOak icon.
+
 ## [1.0.2] - 11-06-2020
 
 - docs: add examples matching the main repo README with tests.

@@ -1,9 +1,35 @@
-# superoak
-
+<p align="center">
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/asos-craigmorten/superoak/raw/master/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
+  <h1 align="center">SuperOak</h1>
+</p>
+<p align="center">
 HTTP assertions for Deno's Oak web framework made easy via [SuperDeno](https://github.com/asos-craigmorten/superdeno).
+</p>
+<p align="center">
+   <a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="Current version" /></a>
+   <img src="https://github.com/asos-craigmorten/superoak/workflows/Test/badge.svg" alt="Current test status" />
+   <a href="https://doc.deno.land/https/deno.land/x/superoak/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="SuperOak docs" /></a>
+   <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
+   <a href="https://github.com/asos-craigmorten/superoak/issues/"><img src="https://img.shields.io/github/issues/asos-craigmorten/superoak" alt="SuperOak issues" /></a>
+   <img src="https://img.shields.io/github/stars/asos-craigmorten/superoak" alt="SuperOak stars" />
+   <img src="https://img.shields.io/github/forks/asos-craigmorten/superoak" alt="SuperOak forks" />
+   <img src="https://img.shields.io/github/license/asos-craigmorten/superoak" alt="SuperOak license" />
+   <a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
+   <a href="http://hits.dwyl.com/asos-craigmorten/superoak"><img src="http://hits.dwyl.com/asos-craigmorten/superoak.svg" alt="SuperOak repository visit count" /></a>
+</p>
 
-[![GitHub tag](https://img.shields.io/github/tag/asos-craigmorten/superoak)](https://github.com/asos-craigmorten/superoak/tags/) ![Test](https://github.com/asos-craigmorten/superoak/workflows/Test/badge.svg) [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/deno.land/x/superoak/mod.ts) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![GitHub issues](https://img.shields.io/github/issues/asos-craigmorten/superoak)](https://img.shields.io/github/issues/asos-craigmorten/superoak)
-![GitHub stars](https://img.shields.io/github/stars/asos-craigmorten/superoak) ![GitHub forks](https://img.shields.io/github/forks/asos-craigmorten/superoak) ![superoak License](https://img.shields.io/github/license/asos-craigmorten/superoak) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity) [![HitCount](http://hits.dwyl.com/asos-craigmorten/superoak.svg)](http://hits.dwyl.com/asos-craigmorten/superoak)
+---
+
+## Table of Contents
+
+- [About](#about)
+- [Installation](#installation)
+- [Example](#example)
+- [Documentation](#documentation)
+- [API](#api)
+- [Notes](#notes)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## About
 
@@ -62,7 +88,7 @@ Save the above to a file `demo.test.ts` and test it using `deno test --allow-net
 
 For further examples, see the [SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md), [tests](https://github.com/asos-craigmorten/superoak/blob/master/test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
 
-## Docs
+## Documentation
 
 - [SuperOak Type Docs](https://asos-craigmorten.github.io/superoak/)
 - [SuperOak Deno Docs](https://doc.deno.land/https/deno.land/x/superoak/mod.ts)
@@ -125,3 +151,5 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
 ## License
 
 SuperOak is licensed under the [MIT License](./LICENSE.md).
+
+Icon designed and created by [Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).
