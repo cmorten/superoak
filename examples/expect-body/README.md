@@ -13,7 +13,7 @@ To run this example's SuperOak tests:
 deno test --allow-net ./examples/expect-body/server.test.ts
 
 # Or remotely:
-deno test --allow-net https://raw.githubusercontent.com/asos-craigmorten/superoak/master/examples/expect-body/server.test.ts
+deno test --allow-net https://raw.githubusercontent.com/asos-craigmorten/superoak/main/examples/expect-body/server.test.ts
 ```
 
 You should then see something like this in the console:
@@ -36,5 +36,5 @@ If you just want to run the server:
 deno run --allow-net ./examples/expect-body/server.ts
 
 # Or remotely:
-deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/superoak/master/examples/expect-body/server.ts
+deno run --allow-net https://raw.githubusercontent.com/asos-craigmorten/superoak/main/examples/expect-body/server.ts
 ```

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/asos-craigmorten/superoak/raw/master/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/asos-craigmorten/superoak/raw/main/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
   <h1 align="center">SuperOak</h1>
 </p>
 <p align="center">
@@ -44,7 +44,7 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import SuperOak straight into your project:
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@main/mod.ts";
 ```
 
 If you want to use a specific version of SuperOak, just modify the import url to contain the version:
@@ -66,8 +66,8 @@ You may pass a url string (for an already running Oak server), or an Oak `Applic
 SuperOak works with any Deno test framework. Here's an example with Deno's built-in test framework.
 
 ```ts
-import { Application, Router } from "https://deno.land/x/oak@master/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@main/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@main/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
@@ -86,15 +86,15 @@ Deno.test("it should support the Oak framework", async () => {
 
 Save the above to a file `demo.test.ts` and test it using `deno test --allow-net demo.test.ts`.
 
-For further examples, see the [SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md), [tests](https://github.com/asos-craigmorten/superoak/blob/master/test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
+For further examples, see the [SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md), [tests](https://github.com/asos-craigmorten/superoak/blob/main/test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
 
 ## Documentation
 
 - [SuperOak Type Docs](https://asos-craigmorten.github.io/superoak/)
 - [SuperOak Deno Docs](https://doc.deno.land/https/deno.land/x/superoak/mod.ts)
-- [SuperOak Examples](https://github.com/asos-craigmorten/superoak/blob/master/examples/README.md)
-- [License](https://github.com/asos-craigmorten/superoak/blob/master/LICENSE.md)
-- [Changelog](https://github.com/asos-craigmorten/superoak/blob/master/.github/CHANGELOG.md)
+- [SuperOak Examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md)
+- [License](https://github.com/asos-craigmorten/superoak/blob/main/LICENSE.md)
+- [Changelog](https://github.com/asos-craigmorten/superoak/blob/main/.github/CHANGELOG.md)
 
 ## API
 
@@ -106,8 +106,8 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
 - Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot re-use a SuperOak instance once the chained `.end()` method has been called. This is because SuperOak will automatically close the server once the chained `.end()` method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:
 
   ```ts
-  import { Application, Router } from "https://deno.land/x/oak@master/mod.ts";
-  import { superoak } from "https://deno.land/x/superoak@master/mod.ts";
+  import { Application, Router } from "https://deno.land/x/oak@main/mod.ts";
+  import { superoak } from "https://deno.land/x/superoak@main/mod.ts";
 
   const router = new Router();
   const app = new Application();
@@ -144,7 +144,7 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
 
 ## Contributing
 
-[Contributing guide](https://github.com/asos-craigmorten/superoak/blob/master/.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/asos-craigmorten/superoak/blob/main/.github/CONTRIBUTING.md)
 
 ---
 

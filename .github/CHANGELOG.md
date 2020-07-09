@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [1.3.0] - 09-07-2020
+
+- feat: move to default branch of `main`.
+
 ## [1.2.0] - 09-07-2020
 
 - feat: support Deno `1.1.3`, std `0.60.0` and consume SuperDeno `1.6.1`.
