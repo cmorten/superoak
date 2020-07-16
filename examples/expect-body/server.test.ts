@@ -1,4 +1,4 @@
-import { superoak } from "https://deno.land/x/superoak@main/mod.ts";
+import { superoak } from "../../mod.ts";
 import { app } from "./server.ts";
 
 Deno.test("it should support the Oak framework", async () => {

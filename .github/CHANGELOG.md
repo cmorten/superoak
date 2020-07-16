@@ -1,6 +1,11 @@
 # ChangeLog
 
-## [1.3.0] - 09-07-2020
+## [2.0.0] - 16-07-2020
+
+- feat: update to Deno `1.2.0` (breaking upgrade), std `0.61.0` and other dep upgrades.
+- chore: update formatting.
+
+## [1.3.0] - 09-07-2020
 
 - feat: move to default branch of `main`.
 
