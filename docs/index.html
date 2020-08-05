@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title></title>
-	<meta name="description" content="Documentation for ">
+	<title>superoak</title>
+	<meta name="description" content="Documentation for superoak">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title"></a>
+					<a href="index.html" class="title">superoak</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1></h1>
+			<h1>superoak</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,7 @@
 					<h1 align="center">SuperOak</h1>
 				</p>
 				<p align="center">
-					HTTP assertions for Deno's Oak web framework made easy via [SuperDeno](https://github.com/asos-craigmorten/superdeno).
+					HTTP assertions for Deno's Oak web framework made easy via <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>.
 				</p>
 				<p align="center">
 					<a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="Current version" /></a>
@@ -105,18 +105,16 @@
 				<p>This is a <a href="https://deno.land/">Deno</a> module available to import direct from this repo and via the <a href="https://deno.land/x">Deno Registry</a>.</p>
 				<p>Before importing, <a href="https://deno.land/#installation">download and install Deno</a>.</p>
 				<p>You can then import SuperOak straight into your project:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@main/mod.ts&quot;</span>;</code></pre>
-				<p>If you want to use a specific version of SuperOak, just modify the import url to contain the version:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@1.0.1/mod.ts&quot;</span>;</code></pre>
-				<p>Or if you want to use a specific commit of SuperOak, just modify the import url to contain the commit hash:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@c4eb4a8/mod.ts&quot;</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@2.1.0/mod.ts&quot;</span>;</code></pre>
+				<p>SuperOak is also available on <a href="https://nest.land/package/superoak">nest.land</a>, a package registry for Deno on the Blockchain.</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://x.nest.land/superoak@2.1.0/mod.ts&quot;</span>;</code></pre>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
 				<p>You may pass a url string (for an already running Oak server), or an Oak <code>Application</code> object to <code>superoak()</code> - when passing an Oak <code>Application</code>, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
 				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@main/mod.ts&quot;</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@main/mod.ts&quot;</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.0.1/mod.ts&quot;</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@2.1.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
 router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
@@ -154,8 +152,8 @@ Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&qu
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call a method such as <code>.get(&quot;/&quot;)</code>.</p>
 					</li>
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
-						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@main/mod.ts&quot;</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@main/mod.ts&quot;</span>;
+						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.0.1/mod.ts&quot;</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@2.1.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
@@ -235,6 +233,5 @@ Deno.test(
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
