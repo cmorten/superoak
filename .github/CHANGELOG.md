@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [2.2.0] - 24-08-2020
+
+- feat: upgrade supported Deno to `1.3.1` and std module to `0.66.0`.
+- feat: upgrade superdeno dep.
+
 ## [2.1.0] - 05-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.2.2` and `0.63.0`.
