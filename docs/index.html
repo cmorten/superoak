@@ -113,7 +113,7 @@
 				</a>
 				<p>You may pass a url string (for an already running Oak server), or an Oak <code>Application</code> object to <code>superoak()</code> - when passing an Oak <code>Application</code>, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
 				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.0.1/mod.ts&quot;</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.2.0/mod.ts&quot;</span>;
 <span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@2.3.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
@@ -152,7 +152,7 @@ Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&qu
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call a method such as <code>.get(&quot;/&quot;)</code>.</p>
 					</li>
 					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
-						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.0.1/mod.ts&quot;</span>;
+						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.2.0/mod.ts&quot;</span>;
 <span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@2.3.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
