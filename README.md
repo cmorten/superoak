@@ -44,13 +44,13 @@ Before importing, [download and install Deno](https://deno.land/#installation).
 You can then import SuperOak straight into your project:
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@2.3.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@2.3.1/mod.ts";
 ```
 
 SuperOak is also available on [nest.land](https://nest.land/package/superoak), a package registry for Deno on the Blockchain.
 
 ```ts
-import { superoak } from "https://x.nest.land/superoak@2.3.0/mod.ts";
+import { superoak } from "https://x.nest.land/superoak@2.3.1/mod.ts";
 ```
 
 ## Example
@@ -61,7 +61,7 @@ SuperOak works with any Deno test framework. Here's an example with Deno's built
 
 ```ts
 import { Application, Router } from "https://deno.land/x/oak@v6.2.0/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@2.3.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@2.3.1/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
@@ -101,7 +101,7 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
 
   ```ts
   import { Application, Router } from "https://deno.land/x/oak@v6.2.0/mod.ts";
-  import { superoak } from "https://deno.land/x/superoak@2.3.0/mod.ts";
+  import { superoak } from "https://deno.land/x/superoak@2.3.1/mod.ts";
 
   const router = new Router();
   const app = new Application();
