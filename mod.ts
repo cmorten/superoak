@@ -1,7 +1,7 @@
 export { superoak } from "./src/superoak.ts";
-export { VERSION, DENO_SUPPORTED_VERSIONS } from "./version.ts";
+export { DENO_SUPPORTED_VERSIONS, VERSION } from "./version.ts";
 
 /**
  * Re-export useful types from SuperDeno.
  */
-export type { SuperDeno, Test, IRequest, IResponse } from "./deps.ts";
+export type { IRequest, IResponse, SuperDeno, Test } from "./deps.ts";

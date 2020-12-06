@@ -6,9 +6,7 @@ Please read each section carefully.
 
 ## Getting started
 
-The first thing to do before starting to work on your feature would be to have a conversation with the codeowners about it, we may have some pointers or examples that might make your life much easier!
-
-The other thing you will need before you start is to create an issue describing what it is that you're set to do, or if its a bug make sure there are clear reproduction steps on the description.
+The first thing to do before you start is to create an issue describing what it is that you're set to do, or if its a bug make sure there are clear reproduction steps on the description. This way we can start a conversation with the codeowners about it, we may have some pointers or examples that might make your life much easier!
 
 Things to talk about in our first conversation:
 

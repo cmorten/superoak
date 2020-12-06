@@ -1,7 +1,7 @@
 .PHONY: build ci deps doc fmt fmt-check lint lock precommit test typedoc
 
 build:
-	@deno run --lock=lock.json --reload mod.ts
+	@deno run --allow-net --lock=lock.json --reload mod.ts
 
 ci:
 	@make fmt-check
@@ -24,7 +24,7 @@ lint:
 	@deno lint --unstable
 
 lock:
-	@deno run --lock=lock.json --lock-write --reload mod.ts
+	@deno run --allow-net --lock=lock.json --lock-write --reload mod.ts
 
 precommit:
 	@make lock
