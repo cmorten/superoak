@@ -1,11 +1,11 @@
 import {
   Application,
-  RouterContext,
-  Router,
   expect,
   isFreePort,
+  Router,
+  RouterContext,
 } from "./deps.ts";
-import { Test, getFreePort } from "../deps.ts";
+import { getFreePort, Test } from "../deps.ts";
 import { describe, it } from "./utils.ts";
 import { superoak } from "../mod.ts";
 

@@ -1,4 +1,4 @@
-import { superdeno, Server, SuperDeno, getFreePort } from "../deps.ts";
+import { getFreePort, Server, SuperDeno, superdeno } from "../deps.ts";
 
 /**
  * Generates a random number between min and max
