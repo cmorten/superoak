@@ -3,8 +3,9 @@
 ## [2.4.0] - 06-12-2020
 
 - feat: upgrade supported Deno to `1.5.4` and std module to `0.79.0`.
-- feat: upgrade superdeno to `2.4.0`
-- fix: upgrade expect to `0.2.6` to fix import bug
+- feat: upgrade superdeno to `2.4.0`.
+- fix: upgrade expect to `0.2.6` to fix import bug.
+- docs: update `contributing.md` r.e. getting started with an issue.
 
 ## [2.3.1] - 19-09-2020
 
