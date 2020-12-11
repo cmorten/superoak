@@ -28,6 +28,7 @@
 - [Documentation](#documentation)
 - [API](#api)
 - [Notes](#notes)
+- [FAQs](#faqs)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -135,6 +136,76 @@ Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superden
     }
   );
   ```
+
+## FAQs
+
+### Error: Request has been terminated [#13](https://github.com/asos-craigmorten/superoak/issues/13)
+
+✅ works
+
+```js
+// ...
+Deno.test("app", async () => {
+  const testClient = await superoak(app);
+  await testClient.get("/").expect("Hello GET!");
+});
+// ...
+```
+
+✅ works
+
+```js
+// ...
+Deno.test("app get", async () => {
+  const testClient = await superoak(app);
+  await testClient.get("/").expect("Hello GET!");
+});
+Deno.test("app post", async () => {
+  const testClient = await superoak(app);
+  await testClient.post("/").expect("Hello POST!");
+});
+// ...
+```
+
+✅ works
+
+```js
+// ...
+Deno.test("app", async () => {
+  let testClient = await superoak(app);
+  await testClient.get("/").expect("Hello GET!");
+
+  testClient = await superoak(app);
+  await testClient.post("/").expect("Hello POST!");
+});
+// ...
+```
+
+✅ works
+
+```js
+// ...
+Deno.test("app", async () => {
+  const testClient = await superoak(app);
+  await testClient.get("/").expect("Hello GET!");
+
+  const testClient2 = await superoak(app);
+  await testClient2.post("/").expect("Hello POST!");
+});
+// ...
+```
+
+❌ won't work
+
+```js
+// ...
+Deno.test("app", async () => {
+  const testClient = await superoak(app);
+  await testClient.get("/").expect("Hello GET!");
+  await testClient.post("/").expect("Hello POST!");
+});
+// ...
+```
 
 ## Contributing
 
