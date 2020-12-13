@@ -315,7 +315,7 @@ describe("superoak(app)", () => {
         await new Promise((resolve) => {
           setTimeout(() => {
             ctx.response.body = "";
-            resolve();
+            resolve(true);
           }, 20);
         });
       });
