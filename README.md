@@ -93,7 +93,7 @@ For further examples, see the [SuperOak examples](https://github.com/asos-craigm
 
 ## API
 
-Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superdeno#api) and [SuperAgent API](https://visionmedia.github.io/superagent/) .
+Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superdeno#api) and [SuperAgent API](https://visionmedia.github.io/superagent/).
 
 ## Notes
 
