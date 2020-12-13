@@ -1,7 +1,7 @@
 /** 
  * Version of SuperOak.
  */
-export const VERSION: string = "2.5.0";
+export const VERSION: string = "3.0.0";
 
 /**
  * Supported versions of Deno.
