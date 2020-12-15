@@ -86,12 +86,17 @@
 					<h2>Table of Contents</h2>
 				</a>
 				<ul>
+					<li><a href="#table-of-contents">Table of Contents</a></li>
 					<li><a href="#about">About</a></li>
 					<li><a href="#installation">Installation</a></li>
 					<li><a href="#example">Example</a></li>
 					<li><a href="#documentation">Documentation</a></li>
 					<li><a href="#api">API</a></li>
-					<li><a href="#notes">Notes</a></li>
+					<li><a href="#faqs">FAQs</a><ul>
+							<li><a href="#property-get-does-not-exist-on-type-promisesuperdeno-error"><code>Property &#39;get&#39; does not exist on type &#39;Promise&lt;SuperDeno&gt;&#39;</code> error</a></li>
+							<li><a href="#request-has-been-terminated-error"><code>Request has been terminated</code> error</a></li>
+						</ul>
+					</li>
 					<li><a href="#contributing">Contributing</a></li>
 					<li><a href="#license">License</a></li>
 				</ul>
@@ -144,50 +149,57 @@ Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&qu
 				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
 					<h2>API</h2>
 				</a>
-				<p>Please refer to the <a href="https://github.com/asos-craigmorten/superdeno#api">SuperDeno API</a>.</p>
-				<a href="#notes" id="notes" style="color: inherit; text-decoration: none;">
-					<h2>Notes</h2>
+				<p>Please refer to the <a href="https://github.com/asos-craigmorten/superdeno#api">SuperDeno API</a> and <a href="https://visionmedia.github.io/superagent/">SuperAgent API</a>.</p>
+				<a href="#faqs" id="faqs" style="color: inherit; text-decoration: none;">
+					<h2>FAQs</h2>
 				</a>
-				<ul>
-					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call a method such as <code>.get(&quot;/&quot;)</code>.</p>
-					</li>
-					<li><p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use a SuperOak instance once the chained <code>.end()</code> method has been called. This is because SuperOak will automatically close the server once the chained <code>.end()</code> method is called. Instead you should make all of your assertions on the one SuperOak instance, or create a new SuperOak instance like below:</p>
-						<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.2.0/mod.ts&quot;</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@3.0.1/mod.ts&quot;</span>;
-
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> Application();
-
-router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
-  ctx.response.body = <span class="hljs-string">&quot;Hello Deno!&quot;</span>;
+				<a href="#property-39get39-does-not-exist-on-type-39promiseltsuperdenogt39-error" id="property-39get39-does-not-exist-on-type-39promiseltsuperdenogt39-error" style="color: inherit; text-decoration: none;">
+					<h3><code>Property &#39;get&#39; does not exist on type &#39;Promise&lt;SuperDeno&gt;&#39;</code> error</h3>
+				</a>
+				<p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, <code>superoak()</code> returns a promise which will need to be awaited before you can call any method such as <code>.get(&quot;/&quot;)</code>.</p>
+				<pre><code class="language-ts"><span class="hljs-comment">// ✅ works</span>
+Deno.test(<span class="hljs-string">&quot;it will allow you to make assertions if you await it&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
 });
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+<span class="hljs-comment">// ❌ won&#x27;t work</span>
+Deno.test(<span class="hljs-string">&quot;it will allow you to make assertions if you await it&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request = superoak(app);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>); <span class="hljs-comment">// Boom 💥 `Property &#x27;get&#x27; does not exist on type &#x27;Promise&lt;SuperDeno&gt;&#x27;`</span>
+});</code></pre>
+				<a href="#request-has-been-terminated-error" id="request-has-been-terminated-error" style="color: inherit; text-decoration: none;">
+					<h3><code>Request has been terminated</code> error</h3>
+				</a>
+				<p>Unlike <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>, you cannot re-use SuperOak instances. If you try you will encounter an error similar to below:</p>
+				<pre><code class="language-console">Error: Request has been terminated
+Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
+    at Test.Request.crossDomainError
+    at XMLHttpRequestSham.xhr.onreadystatechange
+    ...</code></pre>
+				<p>This is because SuperOak instances automatically close the underlying Oak server once the assertion chain has completed.</p>
+				<p>Instead you should make all of your assertions on a single SuperOak instance, or create a new SuperOak instance for subsequent assertions like below:</p>
+				<pre><code class="language-ts"><span class="hljs-comment">// ✅ works</span>
+Deno.test(<span class="hljs-string">&quot;it will allow you to make multiple assertions on one SuperOak instance&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
+});
 
-Deno.test(
-  <span class="hljs-string">&quot;it will allow your to make multiple assertions on one SuperOak instance&quot;</span>,
-  <span class="hljs-keyword">async</span> () =&gt; {
-    <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
+<span class="hljs-comment">// ✅ works</span>
+Deno.test(<span class="hljs-string">&quot;it will allow you to re-use the Application for another SuperOak instance&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request1 = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request1.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>);
 
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
-  }
-);
+  <span class="hljs-keyword">const</span> request2 = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request2.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
+});
 
-Deno.test(
-  <span class="hljs-string">&quot;it will allow your to re-use the Application for another SuperOak instance&quot;</span>,
-  <span class="hljs-keyword">async</span> () =&gt; {
-    <span class="hljs-keyword">let</span> request = <span class="hljs-keyword">await</span> superoak(app);
-
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>);
-
-    request = <span class="hljs-keyword">await</span> superoak(app);
-
-    <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
-  }
-);</code></pre>
-					</li>
-				</ul>
+<span class="hljs-comment">// ❌ won&#x27;t work</span>
+Deno.test(<span class="hljs-string">&quot;it will throw an error if try to re-use a SuperOak instance&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>);
+  <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>); <span class="hljs-comment">// Boom 💥 `Error: Request has been terminated`</span>
+});</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
