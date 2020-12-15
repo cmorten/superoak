@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [3.0.1] - 15-12-2020
+
+- feat: upgrade supported Deno to `1.6.1` and std module to `0.81.0`.
+- chore: remove lock fixing for ci build due to CDN hash issues.
+
 ## [3.0.0] - 12-12-2020
 
 - feat: upgrade to `superdeno@3.0.0` - **BREAKING CHANGE** support [superagent `.redirects(n)` API](https://visionmedia.github.io/superagent/#following-redirects), with a default of `0`.
