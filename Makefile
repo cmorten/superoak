@@ -1,7 +1,7 @@
 .PHONY: build ci deps doc fmt fmt-check lint lock precommit test typedoc
 
 build:
-	@deno run --allow-net --lock=lock.json --reload mod.ts
+	@deno run --allow-net="deno.land" --reload mod.ts
 
 ci:
 	@make fmt-check
