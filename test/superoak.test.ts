@@ -143,6 +143,70 @@ describe("superoak(app)", () => {
       });
   });
 
+  it("superoak(app): should not follow redirects by default", async (
+    done,
+  ) => {
+    const router = new Router();
+    const app = new Application();
+
+    router.get("/", (ctx: RouterContext) => {
+      ctx.response.body = "hey";
+    });
+
+    router.get("/redirect", (ctx: RouterContext) => {
+      ctx.response.redirect("/");
+    });
+
+    app.use(router.routes());
+    app.use(router.allowedMethods());
+
+    const redirects: string[] = [];
+
+    (await superoak(app))
+      .get("/redirect")
+      .on("redirect", (res) => {
+        redirects.push(res.headers.location);
+      })
+      .then((res) => {
+        expect(redirects).toEqual([]);
+        expect(res.status).toEqual(302);
+        done();
+      });
+  });
+
+  it("superoak(app): should follow redirects when instructed", async (
+    done,
+  ) => {
+    const router = new Router();
+    const app = new Application();
+
+    router.get("/", (ctx: RouterContext) => {
+      ctx.response.body = "Smudgie";
+    });
+
+    router.get("/redirect", (ctx: RouterContext) => {
+      ctx.response.redirect("/");
+    });
+
+    app.use(router.routes());
+    app.use(router.allowedMethods());
+
+    const redirects: string[] = [];
+
+    (await superoak(app))
+      .get("/redirect")
+      .redirects(1)
+      .on("redirect", (res) => {
+        redirects.push(res.headers.location);
+      })
+      .then((res) => {
+        expect(redirects).toEqual(["/"]);
+        expect(res.status).toEqual(200);
+        expect(res.text).toEqual("Smudgie");
+        done();
+      });
+  });
+
   // TODO: https test.
   // it("superoak(app, true): should work with a https server", (done) => {});
 
@@ -315,7 +379,7 @@ describe("superoak(app)", () => {
         await new Promise((resolve) => {
           setTimeout(() => {
             ctx.response.body = "";
-            resolve();
+            resolve(true);
           }, 20);
         });
       });

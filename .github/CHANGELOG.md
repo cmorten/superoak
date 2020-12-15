@@ -1,5 +1,16 @@
 # ChangeLog
 
+## [3.0.0] - 12-12-2020
+
+- feat: upgrade to `superdeno@3.0.0` - **BREAKING CHANGE** support [superagent `.redirects(n)` API](https://visionmedia.github.io/superagent/#following-redirects), with a default of `0`.
+
+The consequence of upgrading superdeno to support the `.redirects(n)` API is that superoak follows a default of `0` redirects, for parity with [supertest](https://github.com/visionmedia/supertest/blob/master/lib/test.js#L32). If your test requires superoak to follow multiple redirects, specify the number of redirects required in `.redirects(n)`, or use `-1` to have superoak follow all redirects.
+
+## [2.5.0] - 13-12-2020
+
+- feat: upgrade supported Deno to `1.6.0` and std module to `0.80.0`.
+- feat: upgrade superdeno to `2.5.0`.
+
 ## [2.4.1] - 07-12-2020
 
 - fix: upgrade superdeno to `2.4.1` for type fixes.
