@@ -1,3 +1,5 @@
+// deno-lint-ignore-file no-explicit-any
+
 import { getFreePort, Server, SuperDeno, superdeno } from "../deps.ts";
 
 /**
@@ -50,9 +52,11 @@ export async function superoak(
     const controller = new AbortController();
     const { signal } = controller;
 
+    const freePort = await getFreePort(random(1024, 49151));
+
     let listenPromise: Promise<any>;
 
-    return await new Promise(async (resolve) => {
+    return new Promise((resolve) => {
       app.addEventListener(
         "listen",
         (
@@ -72,19 +76,17 @@ export async function superoak(
             }
           };
 
-          serverSham.listener = {
+          (serverSham.listener as Pick<Deno.Listener, "addr">) = {
             addr: {
               port,
               hostname: hostname as string,
               transport: "tcp",
             },
-          } as any;
+          };
 
           resolve(superdeno(serverSham, secure));
         },
       );
-
-      const freePort = await getFreePort(random(1024, 49151));
 
       listenPromise = app.listen(
         { hostname: "127.0.0.1", port: freePort, signal },
