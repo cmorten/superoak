@@ -26,7 +26,7 @@ describe("superoak(url)", () => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    app.addEventListener("listen", async ({ hostname, port, secure }: any) => {
+    app.addEventListener("listen", async ({ hostname, port, secure }) => {
       const protocol = secure ? "https" : "http";
       const url = `${protocol}://${hostname}:${port}`;
 
@@ -62,7 +62,7 @@ describe("superoak(url)", () => {
 
       app.addEventListener(
         "listen",
-        async ({ hostname, port, secure }: any) => {
+        async ({ hostname, port, secure }) => {
           const protocol = secure ? "https" : "http";
           const url = `${protocol}://${hostname}:${port}`;
           const test = (await superoak(url)).get("/");
@@ -98,7 +98,7 @@ describe("superoak(url)", () => {
 
       app.addEventListener(
         "listen",
-        async ({ hostname, port, secure }: any) => {
+        async ({ hostname, port, secure }) => {
           const protocol = secure ? "https" : "http";
           const url = `${protocol}://${hostname}:${port}`;
 
@@ -236,7 +236,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "superoak FTW!";
       });
 
@@ -244,7 +244,7 @@ describe("superoak(app)", () => {
       app.use(router.allowedMethods());
 
       const portPromise: Promise<number> = new Promise((resolve) => {
-        app.addEventListener("listen", async ({ port }) => resolve(port));
+        app.addEventListener("listen", ({ port }) => resolve(port));
       });
 
       (await superoak(app)).get("/")
@@ -263,7 +263,7 @@ describe("superoak(app)", () => {
     //   const router = new Router();
     //   const app = new Application();
 
-    //   router.get("/", async (ctx: RouterContext) => {
+    //   router.get("/", (ctx: RouterContext) => {
     //     ctx.response.body = "superoak FTW!";
     //   });
 
@@ -292,7 +292,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "superoak FTW!";
       });
 
@@ -323,7 +323,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "whatever";
       });
 
@@ -351,7 +351,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "whatever";
       });
 
@@ -404,7 +404,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -428,7 +428,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -449,7 +449,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "foo";
       });
 
@@ -468,7 +468,7 @@ describe("superoak(app)", () => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", async (ctx: RouterContext) => {
+        router.get("/", (ctx: RouterContext) => {
           ctx.response.body = "foo";
         });
 
@@ -479,7 +479,7 @@ describe("superoak(app)", () => {
           .get("/")
           .expect(200, "")
           .end((err, res) => {
-            expect(err.message).toEqual("expected '' response body, got 'foo'");
+            expect(err.message).toEqual('expected "" response body, got "foo"');
             done();
           });
       });
@@ -493,7 +493,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -505,7 +505,7 @@ describe("superoak(app)", () => {
         .expect("hey")
         .end((err, res) => {
           expect(err.message).toEqual(
-            "expected 'hey' response body, got '{\"foo\":\"bar\"}'",
+            'expected "hey" response body, got \'{\"foo\":\"bar\"}\'',
           );
           done();
         });
@@ -517,7 +517,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.status = 500;
         ctx.response.body = { message: "something went wrong" };
       });
@@ -543,7 +543,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -561,7 +561,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -573,7 +573,7 @@ describe("superoak(app)", () => {
         .expect({ foo: "baz" })
         .end(async (err, res) => {
           expect(err.message).toEqual(
-            "expected { foo: 'baz' } response body, got { foo: 'bar' }",
+            'expected { foo: "baz" } response body, got { foo: "bar" }',
           );
 
           (await superoak(app))
@@ -589,7 +589,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.status = 200;
         ctx.response.body = { stringValue: "foo", numberValue: 3 };
       });
@@ -608,7 +608,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.status = 200;
         ctx.response.body = {
           stringValue: "foo",
@@ -631,7 +631,7 @@ describe("superoak(app)", () => {
         )
         .end(async (err, res) => {
           expect(err.message).toEqual(
-            "expected { stringValue: 'foo',\n  numberValue: 3,\n  nestedObject: { innerString: 5 } } response body, got { stringValue: 'foo',\n  numberValue: 3,\n  nestedObject: { innerString: '5' } }",
+            'expected { stringValue: "foo", numberValue: 3, nestedObject: { innerString: 5 } } response body, got { stringValue: "foo", numberValue: 3, nestedObject: { innerString: "5" } }',
           ); // eslint-disable-line max-len
 
           (await superoak(app))
@@ -653,7 +653,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "foobar";
       });
 
@@ -664,7 +664,7 @@ describe("superoak(app)", () => {
         .get("/")
         .expect(/^bar/)
         .end((err, res) => {
-          expect(err.message).toEqual("expected body 'foobar' to match /^bar/");
+          expect(err.message).toEqual('expected body "foobar" to match /^bar/');
           done();
         });
     });
@@ -676,7 +676,7 @@ describe("superoak(app)", () => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", async (ctx: RouterContext) => {
+    router.get("/", (ctx: RouterContext) => {
       ctx.response.body = "hey deno";
     });
 
@@ -690,7 +690,7 @@ describe("superoak(app)", () => {
       .expect("hey deno")
       .end((err, res) => {
         expect(err.message).toEqual(
-          "expected 'hey' response body, got 'hey deno'",
+          'expected "hey" response body, got "hey deno"',
         );
         done();
       });
@@ -701,7 +701,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey deno";
       });
 
@@ -723,7 +723,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -745,7 +745,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -769,7 +769,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -789,7 +789,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -813,7 +813,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -831,11 +831,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    describe("handling arbitrary expect functions", async () => {
+    describe("handling arbitrary expect functions", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
+      router.get("/", (ctx: RouterContext) => {
         ctx.response.body = "hey";
       });
 
@@ -950,7 +950,7 @@ describe("superoak(app)", () => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", async (ctx: RouterContext) => {
+        router.get("/", (ctx: RouterContext) => {
           ctx.response.body = "hey";
         });
 
@@ -970,7 +970,7 @@ describe("superoak(app)", () => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", async (ctx: RouterContext) => {
+        router.get("/", (ctx: RouterContext) => {
           ctx.response.body = "hey";
         });
 
@@ -996,7 +996,7 @@ describe("superoak(app)", () => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", async (ctx: RouterContext) => {
+        router.get("/", (ctx: RouterContext) => {
           ctx.response.body = "hey";
         });
 
@@ -1023,7 +1023,7 @@ describe("superoak(app)", () => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", async (ctx: RouterContext) => {
+        router.get("/", (ctx: RouterContext) => {
           ctx.response.body = "hey";
         });
 
