@@ -5,5 +5,4 @@ export type {
   IResponse,
   SuperDeno,
 } from "https://deno.land/x/superdeno@3.1.1/mod.ts";
-export { methods } from "https://deno.land/x/opine@1.1.0/mod.ts";
 export { getFreePort } from "https://deno.land/x/free_port@v1.2.0/mod.ts";
