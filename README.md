@@ -17,6 +17,12 @@
    <a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
    <a href="http://hits.dwyl.com/asos-craigmorten/superoak"><img src="http://hits.dwyl.com/asos-craigmorten/superoak.svg" alt="SuperOak repository visit count" /></a>
 </p>
+<p align="center">
+   <a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
+   <a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
+   <a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
+   <a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
+</p>
 
 ---
 
@@ -63,7 +69,7 @@ You may pass a url string (for an already running Oak server), or an Oak `Applic
 SuperOak works with any Deno test framework. Here's an example with Deno's built-in test framework.
 
 ```ts
-import { Application, Router } from "https://deno.land/x/oak@v6.2.0/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@v6.5.0/mod.ts";
 import { superoak } from "https://deno.land/x/superoak@3.1.0/mod.ts";
 
 const router = new Router();
