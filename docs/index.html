@@ -81,6 +81,12 @@
 					<a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
 					<a href="http://hits.dwyl.com/asos-craigmorten/superoak"><img src="http://hits.dwyl.com/asos-craigmorten/superoak.svg" alt="SuperOak repository visit count" /></a>
 				</p>
+				<p align="center">
+					<a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
+					<a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
+					<a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
+					<a href="https://deno-visualizer.danopia.net/shields/setup/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
+				</p>
 				<hr>
 				<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
 					<h2>Table of Contents</h2>
@@ -110,15 +116,17 @@
 				<p>This is a <a href="https://deno.land/">Deno</a> module available to import direct from this repo and via the <a href="https://deno.land/x">Deno Registry</a>.</p>
 				<p>Before importing, <a href="https://deno.land/#installation">download and install Deno</a>.</p>
 				<p>You can then import SuperOak straight into your project:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@3.1.0/mod.ts&quot;</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@3.1.0/mod.ts&quot;</span>;
+</code></pre>
 				<p>SuperOak is also available on <a href="https://nest.land/package/superoak">nest.land</a>, a package registry for Deno on the Blockchain.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://x.nest.land/superoak@3.1.0/mod.ts&quot;</span>;</code></pre>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://x.nest.land/superoak@3.1.0/mod.ts&quot;</span>;
+</code></pre>
 				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 					<h2>Example</h2>
 				</a>
 				<p>You may pass a url string (for an already running Oak server), or an Oak <code>Application</code> object to <code>superoak()</code> - when passing an Oak <code>Application</code>, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
 				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s built-in test framework.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.2.0/mod.ts&quot;</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v6.5.0/mod.ts&quot;</span>;
 <span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@3.1.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
@@ -133,7 +141,8 @@ app.use(router.allowedMethods());
 Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
   <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
-});</code></pre>
+});
+</code></pre>
 				<p>Save the above to a file <code>demo.test.ts</code> and test it using <code>deno test --allow-net demo.test.ts</code>.</p>
 				<p>For further examples, see the <a href="https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md">SuperOak examples</a>, <a href="https://github.com/asos-craigmorten/superoak/blob/main/test/superoak.test.ts">tests</a> or the <a href="https://github.com/asos-craigmorten/superdeno#example">SuperDeno examples</a> for inspiration.</p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
@@ -167,7 +176,8 @@ Deno.test(<span class="hljs-string">&quot;it will allow you to make assertions i
 Deno.test(<span class="hljs-string">&quot;it will allow you to make assertions if you await it&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> request = superoak(app);
   <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>); <span class="hljs-comment">// Boom 💥 `Property &#x27;get&#x27; does not exist on type &#x27;Promise&lt;SuperDeno&gt;&#x27;`</span>
-});</code></pre>
+});
+</code></pre>
 				<a href="#request-has-been-terminated-error" id="request-has-been-terminated-error" style="color: inherit; text-decoration: none;">
 					<h3><code>Request has been terminated</code> error</h3>
 				</a>
@@ -176,7 +186,8 @@ Deno.test(<span class="hljs-string">&quot;it will allow you to make assertions i
 Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
     at Test.Request.crossDomainError
     at XMLHttpRequestSham.xhr.onreadystatechange
-    ...</code></pre>
+    ...
+</code></pre>
 				<p>This is because SuperOak instances automatically close the underlying Oak server once the assertion chain has completed.</p>
 				<p>Instead you should make all of your assertions on a single SuperOak instance, or create a new SuperOak instance for subsequent assertions like below:</p>
 				<pre><code class="language-ts"><span class="hljs-comment">// ✅ works</span>
@@ -199,7 +210,8 @@ Deno.test(<span class="hljs-string">&quot;it will throw an error if try to re-us
   <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
   <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-number">200</span>);
   <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>); <span class="hljs-comment">// Boom 💥 `Error: Request has been terminated`</span>
-});</code></pre>
+});
+</code></pre>
 				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 					<h2>Contributing</h2>
 				</a>
