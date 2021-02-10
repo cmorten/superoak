@@ -1,5 +1,9 @@
 # ChangeLog
 
+## [3.1.0] - 10-02-2021
+
+- fix: upgrade `superdeno` version to prevent need to supply superfluous `--location <href>` flag.
+
 ## [3.0.1] - 15-12-2020
 
 - feat: upgrade supported Deno to `1.6.1` and std module to `0.81.0`.

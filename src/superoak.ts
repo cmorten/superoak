@@ -50,6 +50,8 @@ export async function superoak(
     const controller = new AbortController();
     const { signal } = controller;
 
+    let listenPromise: Promise<any>;
+
     return await new Promise(async (resolve) => {
       app.addEventListener(
         "listen",
@@ -62,7 +64,13 @@ export async function superoak(
         ) => {
           const serverSham: Server = Object.create(Server.prototype);
 
-          serverSham.close = () => controller.abort();
+          serverSham.close = async () => {
+            controller.abort();
+
+            if (listenPromise) {
+              await listenPromise;
+            }
+          };
 
           serverSham.listener = {
             addr: {
@@ -78,7 +86,7 @@ export async function superoak(
 
       const freePort = await getFreePort(random(1024, 49151));
 
-      app.listen(
+      listenPromise = app.listen(
         { hostname: "127.0.0.1", port: freePort, signal },
       );
     });
