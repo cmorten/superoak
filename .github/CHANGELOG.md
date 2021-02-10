@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [4.0.0] - 10-02-2021
+
+- feat: upgrade to superdeno 4.0.0 (#19) 
+- docs: simplify the contributing process
+
 ## [3.1.0] - 10-02-2021
 
 - fix: upgrade `superdeno` version to prevent need to supply superfluous `--location <href>` flag.
