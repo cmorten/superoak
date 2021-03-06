@@ -19,7 +19,7 @@
 </p>
 <p align="center">
    <a href="https://deno.land/x/superoak"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.7.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.8.0-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
@@ -36,42 +36,52 @@
 - [Documentation](#documentation)
 - [API](#api)
 - [FAQs](#faqs)
-  - [`Property 'get' does not exist on type 'Promise<SuperDeno>'` error](#property-get-does-not-exist-on-type-promisesuperdeno-error)
+  - [`Property 'get' does not exist on type 'Promise<SuperDeno>'`
+    error](#property-get-does-not-exist-on-type-promisesuperdeno-error)
   - [`Request has been terminated` error](#request-has-been-terminated-error)
 - [Contributing](#contributing)
 - [License](#license)
 
 ## About
 
-This module aims to provide a high-level abstraction for testing HTTP in Deno's Oak web framework. This is a wrapper compatibility layer around [SuperDeno](https://github.com/asos-craigmorten/superdeno) to reduce some of the boilerplate needed to setup Oak integration + functional tests.
+This module aims to provide a high-level abstraction for testing HTTP in Deno's
+Oak web framework. This is a wrapper compatibility layer around
+[SuperDeno](https://github.com/asos-craigmorten/superdeno) to reduce some of the
+boilerplate needed to setup Oak integration + functional tests.
 
 ## Installation
 
-This is a [Deno](https://deno.land/) module available to import direct from this repo and via the [Deno Registry](https://deno.land/x).
+This is a [Deno](https://deno.land/) module available to import direct from this
+repo and via the [Deno Registry](https://deno.land/x).
 
 Before importing, [download and install Deno](https://deno.land/#installation).
 
 You can then import SuperOak straight into your project:
 
 ```ts
-import { superoak } from "https://deno.land/x/superoak@4.0.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@4.1.0/mod.ts";
 ```
 
-SuperOak is also available on [nest.land](https://nest.land/package/superoak), a package registry for Deno on the Blockchain.
+SuperOak is also available on [nest.land](https://nest.land/package/superoak), a
+package registry for Deno on the Blockchain.
 
 ```ts
-import { superoak } from "https://x.nest.land/superoak@4.0.0/mod.ts";
+import { superoak } from "https://x.nest.land/superoak@4.1.0/mod.ts";
 ```
 
 ## Example
 
-You may pass a url string (for an already running Oak server), or an Oak `Application` object to `superoak()` - when passing an Oak `Application`, SuperOak will automatically handle the creation of a server, binding to a free ephemeral port and closing of the server on a call to `.end()`.
+You may pass a url string (for an already running Oak server), or an Oak
+`Application` object to `superoak()` - when passing an Oak `Application`,
+SuperOak will automatically handle the creation of a server, binding to a free
+ephemeral port and closing of the server on a call to `.end()`.
 
-SuperOak works with any Deno test framework. Here's an example with Deno's built-in test framework.
+SuperOak works with any Deno test framework. Here's an example with Deno's
+built-in test framework.
 
 ```ts
 import { Application, Router } from "https://deno.land/x/oak@v6.5.0/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@4.0.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@4.1.0/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
@@ -88,9 +98,15 @@ Deno.test("it should support the Oak framework", async () => {
 });
 ```
 
-Save the above to a file `demo.test.ts` and test it using `deno test --allow-net demo.test.ts`.
+Save the above to a file `demo.test.ts` and test it using
+`deno test --allow-net demo.test.ts`.
 
-For further examples, see the [SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md), [tests](https://github.com/asos-craigmorten/superoak/blob/main/test/superoak.test.ts) or the [SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for inspiration.
+For further examples, see the
+[SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md),
+[tests](https://github.com/asos-craigmorten/superoak/blob/main/test/superoak.test.ts)
+or the
+[SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for
+inspiration.
 
 ## Documentation
 
@@ -102,13 +118,17 @@ For further examples, see the [SuperOak examples](https://github.com/asos-craigm
 
 ## API
 
-Please refer to the [SuperDeno API](https://github.com/asos-craigmorten/superdeno#api) and [SuperAgent API](https://visionmedia.github.io/superagent/).
+Please refer to the
+[SuperDeno API](https://github.com/asos-craigmorten/superdeno#api) and
+[SuperAgent API](https://visionmedia.github.io/superagent/).
 
 ## FAQs
 
 ### `Property 'get' does not exist on type 'Promise<SuperDeno>'` error
 
-Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), `superoak()` returns a promise which will need to be awaited before you can call any method such as `.get("/")`.
+Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), `superoak()`
+returns a promise which will need to be awaited before you can call any method
+such as `.get("/")`.
 
 ```ts
 // ✅ works
@@ -126,7 +146,9 @@ Deno.test("it will allow you to make assertions if you await it", async () => {
 
 ### `Request has been terminated` error
 
-Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot re-use SuperOak instances. If you try you will encounter an error similar to below:
+Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot
+re-use SuperOak instances. If you try you will encounter an error similar to
+below:
 
 ```console
 Error: Request has been terminated
@@ -136,9 +158,11 @@ Possible causes: the network is offline, Origin is not allowed by Access-Control
     ...
 ```
 
-This is because SuperOak instances automatically close the underlying Oak server once the assertion chain has completed.
+This is because SuperOak instances automatically close the underlying Oak server
+once the assertion chain has completed.
 
-Instead you should make all of your assertions on a single SuperOak instance, or create a new SuperOak instance for subsequent assertions like below:
+Instead you should make all of your assertions on a single SuperOak instance, or
+create a new SuperOak instance for subsequent assertions like below:
 
 ```ts
 // ✅ works
@@ -174,4 +198,5 @@ Deno.test("it will throw an error if try to re-use a SuperOak instance", async (
 
 SuperOak is licensed under the [MIT License](./LICENSE.md).
 
-Icon designed and created by [Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).
+Icon designed and created by
+[Hannah Morten](https://www.linkedin.com/in/hannah-morten-b1218017a/).

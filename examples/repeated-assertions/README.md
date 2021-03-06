@@ -2,7 +2,10 @@
 
 A example of how to repeated assertions on the same Oak Application object.
 
-This directory contains Oak server code in `server.ts`, which will run a basic server on localhost port 3000, and a test file `server.test.ts` which uses SuperOak to test that the server's response body and status code matches what is expected.
+This directory contains Oak server code in `server.ts`, which will run a basic
+server on localhost port 3000, and a test file `server.test.ts` which uses
+SuperOak to test that the server's response body and status code matches what is
+expected.
 
 ## How to run this example
 

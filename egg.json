@@ -1,17 +1,17 @@
 {
-    "name": "superoak",
-    "description": "HTTP assertions for Oak made easy via SuperDeno.",
-    "version": "4.0.0",
-    "repository": "https://github.com/asos-craigmorten/superoak",
-    "stable": true,
-    "files": [
-        "./mod.ts",
-        "./deps.ts",
-        "./version.ts",
-        "./lock.json",
-        "./src/**/*",
-        "./README.md",
-        "./LICENSE.md",
-        "./.github/CHANGELOG.md"
-    ]
+  "name": "superoak",
+  "description": "HTTP assertions for Oak made easy via SuperDeno.",
+  "version": "4.1.0",
+  "repository": "https://github.com/asos-craigmorten/superoak",
+  "stable": true,
+  "files": [
+    "./mod.ts",
+    "./deps.ts",
+    "./version.ts",
+    "./lock.json",
+    "./src/**/*",
+    "./README.md",
+    "./LICENSE.md",
+    "./.github/CHANGELOG.md"
+  ]
 }

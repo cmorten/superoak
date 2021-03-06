@@ -1,13 +1,19 @@
 # ChangeLog
 
+## [4.1.0] - 06-03-2021
+
+- feat: Support Deno 1.8.0 and std 0.89.0
+- chore: upgrade dependencies
+
 ## [4.0.0] - 10-02-2021
 
-- feat: upgrade to superdeno 4.0.0 (#19) 
+- feat: upgrade to superdeno 4.0.0 (#19)
 - docs: simplify the contributing process
 
 ## [3.1.0] - 10-02-2021
 
-- fix: upgrade `superdeno` version to prevent need to supply superfluous `--location <href>` flag.
+- fix: upgrade `superdeno` version to prevent need to supply superfluous
+  `--location <href>` flag.
 
 ## [3.0.1] - 15-12-2020
 
@@ -16,9 +22,16 @@
 
 ## [3.0.0] - 12-12-2020
 
-- feat: upgrade to `superdeno@3.0.0` - **BREAKING CHANGE** support [superagent `.redirects(n)` API](https://visionmedia.github.io/superagent/#following-redirects), with a default of `0`.
+- feat: upgrade to `superdeno@3.0.0` - **BREAKING CHANGE** support
+  [superagent `.redirects(n)` API](https://visionmedia.github.io/superagent/#following-redirects),
+  with a default of `0`.
 
-The consequence of upgrading superdeno to support the `.redirects(n)` API is that superoak follows a default of `0` redirects, for parity with [supertest](https://github.com/visionmedia/supertest/blob/master/lib/test.js#L32). If your test requires superoak to follow multiple redirects, specify the number of redirects required in `.redirects(n)`, or use `-1` to have superoak follow all redirects.
+The consequence of upgrading superdeno to support the `.redirects(n)` API is
+that superoak follows a default of `0` redirects, for parity with
+[supertest](https://github.com/visionmedia/supertest/blob/master/lib/test.js#L32).
+If your test requires superoak to follow multiple redirects, specify the number
+of redirects required in `.redirects(n)`, or use `-1` to have superoak follow
+all redirects.
 
 ## [2.5.0] - 13-12-2020
 
@@ -52,12 +65,16 @@ The consequence of upgrading superdeno to support the `.redirects(n)` API is tha
 ## [2.1.0] - 05-08-2020
 
 - chore: upgrade supported Deno and std module versions to `1.2.2` and `0.63.0`.
-- chore: fix modules to tagged versions as [commits and branches are no longer supported by Deno registry](https://deno.land/posts/registry2).
-- docs: remove reference to importing commit or branch from readme as not supported by Deno registry v2.
+- chore: fix modules to tagged versions as
+  [commits and branches are no longer supported by Deno
+  registry](https://deno.land/posts/registry2).
+- docs: remove reference to importing commit or branch from readme as not
+  supported by Deno registry v2.
 
 ## [2.0.0] - 16-07-2020
 
-- feat: update to Deno `1.2.0` (breaking upgrade), std `0.61.0` and other dep upgrades.
+- feat: update to Deno `1.2.0` (breaking upgrade), std `0.61.0` and other dep
+  upgrades.
 - chore: update formatting.
 
 ## [1.3.0] - 09-07-2020

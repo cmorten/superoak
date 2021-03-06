@@ -2,7 +2,9 @@
 
 A basic example of how to test the returned body is as expected.
 
-This directory contains Oak server code in `server.ts`, which will run a basic server on localhost port 3000, and a test file `server.test.ts` which uses SuperOak to test that the server's response body matches what is expected.
+This directory contains Oak server code in `server.ts`, which will run a basic
+server on localhost port 3000, and a test file `server.test.ts` which uses
+SuperOak to test that the server's response body matches what is expected.
 
 ## How to run this example
 

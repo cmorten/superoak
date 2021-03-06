@@ -1,1 +1,63 @@
-{"kinds":{"1":"Module","64":"Function"},"rows":[{"id":0,"kind":1,"name":"\"superoak\"","url":"modules/_superoak_.html","classes":"tsd-kind-module"},{"id":1,"kind":64,"name":"random","url":"modules/_superoak_.html#random","classes":"tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported","parent":"\"superoak\""},{"id":2,"kind":64,"name":"isOakApplication","url":"modules/_superoak_.html#isoakapplication","classes":"tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported","parent":"\"superoak\""},{"id":3,"kind":64,"name":"superoak","url":"modules/_superoak_.html#superoak","classes":"tsd-kind-function tsd-parent-kind-module","parent":"\"superoak\""}],"index":{"version":"2.3.9","fields":["name","parent"],"fieldVectors":[["name/0",[0,0.87]],["parent/0",[]],["name/1",[1,12.04]],["parent/1",[0,0.077]],["name/2",[2,12.04]],["parent/2",[0,0.077]],["name/3",[0,0.87]],["parent/3",[0,0.077]]],"invertedIndex":[["isoakapplication",{"_index":2,"name":{"2":{}},"parent":{}}],["random",{"_index":1,"name":{"1":{}},"parent":{}}],["superoak",{"_index":0,"name":{"0":{},"3":{}},"parent":{"1":{},"2":{},"3":{}}}]],"pipeline":[]}}
+{
+  "kinds": { "1": "Module", "64": "Function" },
+  "rows": [
+    {
+      "id": 0,
+      "kind": 1,
+      "name": "\"superoak\"",
+      "url": "modules/_superoak_.html",
+      "classes": "tsd-kind-module"
+    },
+    {
+      "id": 1,
+      "kind": 64,
+      "name": "random",
+      "url": "modules/_superoak_.html#random",
+      "classes": "tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported",
+      "parent": "\"superoak\""
+    },
+    {
+      "id": 2,
+      "kind": 64,
+      "name": "isOakApplication",
+      "url": "modules/_superoak_.html#isoakapplication",
+      "classes": "tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported",
+      "parent": "\"superoak\""
+    },
+    {
+      "id": 3,
+      "kind": 64,
+      "name": "superoak",
+      "url": "modules/_superoak_.html#superoak",
+      "classes": "tsd-kind-function tsd-parent-kind-module",
+      "parent": "\"superoak\""
+    }
+  ],
+  "index": {
+    "version": "2.3.9",
+    "fields": ["name", "parent"],
+    "fieldVectors": [
+      ["name/0", [0, 0.87]],
+      ["parent/0", []],
+      ["name/1", [1, 12.04]],
+      ["parent/1", [0, 0.077]],
+      ["name/2", [2, 12.04]],
+      ["parent/2", [0, 0.077]],
+      ["name/3", [0, 0.87]],
+      ["parent/3", [0, 0.077]]
+    ],
+    "invertedIndex": [
+      ["isoakapplication", { "_index": 2, "name": { "2": {} }, "parent": {} }],
+      ["random", { "_index": 1, "name": { "1": {} }, "parent": {} }],
+      [
+        "superoak",
+        {
+          "_index": 0,
+          "name": { "0": {}, "3": {} },
+          "parent": { "1": {}, "2": {}, "3": {} }
+        }
+      ]
+    ],
+    "pipeline": []
+  }
+}

@@ -505,7 +505,7 @@ describe("superoak(app)", () => {
         .expect("hey")
         .end((err, res) => {
           expect(err.message).toEqual(
-            'expected "hey" response body, got \'{\"foo\":\"bar\"}\'',
+            'expected "hey" response body, got \'{"foo":"bar"}\'',
           );
           done();
         });
