@@ -136,7 +136,7 @@ describe("superoak(app)", () => {
 
     (await superoak(app))
       .get("/")
-      .end((err, res) => {
+      .end((_err, res) => {
         expect(res.status).toEqual(200);
         expect(res.text).toEqual("hey");
         done();
@@ -248,7 +248,7 @@ describe("superoak(app)", () => {
       });
 
       (await superoak(app)).get("/")
-        .end(async (err, res) => {
+        .end(async (_err, _res) => {
           const port: number = await portPromise;
           const isClosed = await isFreePort(port);
           expect(isClosed).toBeTruthy();
@@ -362,7 +362,7 @@ describe("superoak(app)", () => {
 
       test.expect(() => {
         throw new Error("Some error");
-      }).end(function (this: Test, err, res) {
+      }).end(function (this: Test, err, _res) {
         expect(err).toBeDefined();
         expect(this).toEqual(test);
         done();
@@ -388,7 +388,7 @@ describe("superoak(app)", () => {
       app.use(router.allowedMethods());
 
       (await superoak(app)).get("/").timeout(1)
-        .expect(200, (err, res) => {
+        .expect(200, (err, _res) => {
           expect(err).toBeInstanceOf(Error);
           done();
         });
@@ -414,7 +414,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect(404)
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual('expected 404 "Not Found", got 200 "OK"');
           done();
         });
@@ -478,7 +478,7 @@ describe("superoak(app)", () => {
         (await superoak(app))
           .get("/")
           .expect(200, "")
-          .end((err, res) => {
+          .end((err, _res) => {
             expect(err.message).toEqual('expected "" response body, got "foo"');
             done();
           });
@@ -503,7 +503,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect("hey")
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual(
             'expected "hey" response body, got \'{"foo":"bar"}\'',
           );
@@ -529,7 +529,7 @@ describe("superoak(app)", () => {
         .get("/")
         .expect(200)
         .expect("hey")
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual(
             'expected 200 "OK", got 500 "Internal Server Error"',
           );
@@ -571,7 +571,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect({ foo: "baz" })
-        .end(async (err, res) => {
+        .end(async (err, _res) => {
           expect(err.message).toEqual(
             'expected { foo: "baz" } response body, got { foo: "bar" }',
           );
@@ -629,7 +629,7 @@ describe("superoak(app)", () => {
             nestedObject: { innerString: 5 },
           },
         )
-        .end(async (err, res) => {
+        .end(async (err, _res) => {
           expect(err.message).toEqual(
             'expected { stringValue: "foo", numberValue: 3, nestedObject: { innerString: 5 } } response body, got { stringValue: "foo", numberValue: 3, nestedObject: { innerString: "5" } }',
           ); // eslint-disable-line max-len
@@ -663,7 +663,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect(/^bar/)
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual('expected body "foobar" to match /^bar/');
           done();
         });
@@ -688,7 +688,7 @@ describe("superoak(app)", () => {
       .expect(/deno/)
       .expect("hey")
       .expect("hey deno")
-      .end((err, res) => {
+      .end((err, _res) => {
         expect(err.message).toEqual(
           'expected "hey" response body, got "hey deno"',
         );
@@ -733,7 +733,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect("Content-Foo", "bar")
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual('expected "Content-Foo" header field');
           done();
         });
@@ -755,7 +755,7 @@ describe("superoak(app)", () => {
       (await superoak(app))
         .get("/")
         .expect("Content-Type", "text/plain")
-        .end((err, res) => {
+        .end((err, _res) => {
           expect(err.message).toEqual(
             'expected "Content-Type" of "text/plain", got "application/json; charset=utf-8"',
           );
@@ -846,7 +846,7 @@ describe("superoak(app)", () => {
         done,
       ) => {
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
             throw new Error("failed");
           })
           .end((err) => {
@@ -859,7 +859,7 @@ describe("superoak(app)", () => {
         "superoak(app): .expect(field, value[, fn]): ensures truthy non-errors returned from asserts are not promoted to errors",
         async (done) => {
           (await superoak(app)).get("/")
-            .expect((res) => {
+            .expect((_res) => {
               return "some descriptive error";
             })
             .end((err) => {
@@ -873,7 +873,7 @@ describe("superoak(app)", () => {
         done,
       ) => {
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
             return new Error("some descriptive error");
           })
           .end((err) => {
@@ -887,7 +887,7 @@ describe("superoak(app)", () => {
         done,
       ) => {
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
           })
           .end(done);
       });
@@ -898,13 +898,13 @@ describe("superoak(app)", () => {
         const calls: number[] = [];
 
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
             calls[0] = 1;
           })
-          .expect((res) => {
+          .expect((_res) => {
             calls[1] = 1;
           })
-          .expect((res) => {
+          .expect((_res) => {
             calls[2] = 1;
           })
           .end(() => {
@@ -920,7 +920,7 @@ describe("superoak(app)", () => {
         done,
       ) => {
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
           })
           .expect("Content-Type", /json/)
           .end((err) => {
@@ -933,10 +933,10 @@ describe("superoak(app)", () => {
         done,
       ) => {
         (await superoak(app)).get("/")
-          .expect((res) => {
+          .expect((_res) => {
           })
           .expect("Content-Type", /plain/)
-          .expect((res) => {
+          .expect((_res) => {
           })
           .expect("Content-Type", /text/)
           .end(done);

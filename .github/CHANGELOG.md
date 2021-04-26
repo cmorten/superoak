@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [4.2.0] - 26-04-2021
+
+- feat: Support Deno 1.9.2 and std 0.95.0
+- chore: upgrade dependencies
+
 ## [4.1.0] - 06-03-2021
 
 - feat: Support Deno 1.8.0 and std 0.89.0
