@@ -80,7 +80,7 @@ SuperOak works with any Deno test framework. Here's an example with Deno's
 built-in test framework.
 
 ```ts
-import { Application, Router } from "https://deno.land/x/oak@v6.5.0/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak@v7.6.3/mod.ts";
 import { superoak } from "https://deno.land/x/superoak@4.3.0/mod.ts";
 
 const router = new Router();
