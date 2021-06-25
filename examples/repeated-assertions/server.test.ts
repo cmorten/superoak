@@ -4,7 +4,7 @@ import { app } from "./server.ts";
 Deno.test(
   "it will allow your to make multiple assertions on one SuperOak instance",
   async () => {
-    let request = await superoak(app);
+    const request = await superoak(app);
 
     await request.get("/").expect(200).expect("Hello Deno!");
   },

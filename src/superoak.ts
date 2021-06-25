@@ -4,9 +4,9 @@ import { getFreePort, Server, SuperDeno, superdeno } from "../deps.ts";
 
 /**
  * Generates a random number between min and max
- * @param {number} min 
- * @param {number} max 
- * 
+ * @param {number} min
+ * @param {number} max
+ *
  * @returns {number}
  * @private
  */
@@ -18,9 +18,9 @@ function random(min: number, max: number): number {
 // Oak API interface changes.
 /**
  * Duck typing to determine if is Oak application like.
- * 
+ *
  * @param {any} thing
- * 
+ *
  * @returns {boolean}
  * @private
  */
@@ -31,16 +31,16 @@ function isOakApplication(thing: any): boolean {
 
 /**
  * Takes a url string (for an already running Oak server), or an Oak `Application` object.
- * 
+ *
  * When passing a url string, accepts an optional second argument of `secure` to determine
  * whether connections should be over _HTTPS_ (`true`) or _HTTP_ (`false`).
- * 
+ *
  * When passing an Oak `Application`, SuperOak will automatically handle the creation of a server, binding
  * to a free ephemeral port and closing of the server on a call to `.end()`.
- * 
- * @param {string|Application} app 
- * @param {?boolean} secure 
- * 
+ *
+ * @param {string|Application} app
+ * @param {?boolean} secure
+ *
  * @returns {Promise<SuperDeno>}
  * @public
  */
