@@ -148,9 +148,20 @@ router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-fun
 app.use(router.routes());
 app.use(router.allowedMethods());
 
+<span class="hljs-comment">// Send simple GET request</span>
 Deno.test(<span class="hljs-string">&quot;it should support the Oak framework&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
   <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
   <span class="hljs-keyword">await</span> request.get(<span class="hljs-string">&quot;/&quot;</span>).expect(<span class="hljs-string">&quot;Hello Deno!&quot;</span>);
+});
+
+<span class="hljs-comment">// Custom requests can be built with the superagent API</span>
+<span class="hljs-comment">// https://visionmedia.github.io/superagent/#post--put-requests.</span>
+Deno.test(<span class="hljs-string">&quot;it should allow post requests&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">await</span> superoak(app);
+  <span class="hljs-keyword">await</span> request.post(<span class="hljs-string">&quot;/user&quot;</span>)
+    .set(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>)
+    .send(<span class="hljs-string">&#x27;{&quot;name&quot;:&quot;superoak&quot;}&#x27;</span>)
+    .expect(<span class="hljs-number">200</span>);
 });
 </code></pre>
 				<p>Save the above to a file <code>demo.test.ts</code> and test it using
