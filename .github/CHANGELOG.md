@@ -1,6 +1,6 @@
 # ChangeLog
 
-## [4.4.0] - 25-06-2021
+## [4.4.0] - 13-07-2021
 
 - feat: Support Deno `1.12.0` and std `0.101.0` and other deps upgrades
 
