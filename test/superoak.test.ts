@@ -231,6 +231,7 @@ describe("superoak(app)", () => {
       (await superoak(app)).get("/")
         .end(async (_err, _res) => {
           const port: number = await portPromise;
+          await new Promise((resolve) => setTimeout(resolve, 10));
           const isClosed = await isFreePort(port);
           expect(isClosed).toBeTruthy();
           done();
