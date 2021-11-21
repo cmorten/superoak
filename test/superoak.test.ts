@@ -1,22 +1,14 @@
-import {
-  Application,
-  expect,
-  isFreePort,
-  Router,
-  RouterContext,
-} from "./deps.ts";
+import { Application, expect, isFreePort, Router } from "./deps.ts";
 import { getFreePort, Test } from "../deps.ts";
 import { describe, it } from "./utils.ts";
 import { superoak } from "../mod.ts";
 
 describe("superoak(url)", () => {
-  it("superoak(url): should support `superoak(url)` if consumer wants to handle server themselves", async (
-    done,
-  ) => {
+  it("superoak(url): should support `superoak(url)` if consumer wants to handle server themselves", async (done) => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", (ctx: RouterContext) => {
+    router.get("/", (ctx) => {
       ctx.response.body = "hello";
     });
 
@@ -44,13 +36,11 @@ describe("superoak(url)", () => {
   });
 
   describe(".end(cb)", () => {
-    it("Oak: superoak(url): .end(cb): should set `this` to the test object when calling the `cb` in `.end(cb)`", async (
-      done,
-    ) => {
+    it("Oak: superoak(url): .end(cb): should set `this` to the test object when calling the `cb` in `.end(cb)`", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hello";
       });
 
@@ -80,13 +70,11 @@ describe("superoak(url)", () => {
       );
     });
 
-    it("superoak(url): .end(cb): should handle error returned when server goes down", async (
-      done,
-    ) => {
+    it("superoak(url): .end(cb): should handle error returned when server goes down", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "";
       });
 
@@ -121,13 +109,11 @@ describe("superoak(url)", () => {
 });
 
 describe("superoak(app)", () => {
-  it("superoak(app): should fire up the app on an ephemeral port", async (
-    done,
-  ) => {
+  it("superoak(app): should fire up the app on an ephemeral port", async (done) => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", (ctx: RouterContext) => {
+    router.get("/", (ctx) => {
       ctx.response.body = "hey";
     });
 
@@ -143,17 +129,15 @@ describe("superoak(app)", () => {
       });
   });
 
-  it("superoak(app): should not follow redirects by default", async (
-    done,
-  ) => {
+  it("superoak(app): should not follow redirects by default", async (done) => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", (ctx: RouterContext) => {
+    router.get("/", (ctx) => {
       ctx.response.body = "hey";
     });
 
-    router.get("/redirect", (ctx: RouterContext) => {
+    router.get("/redirect", (ctx) => {
       ctx.response.redirect("/");
     });
 
@@ -174,17 +158,15 @@ describe("superoak(app)", () => {
       });
   });
 
-  it("superoak(app): should follow redirects when instructed", async (
-    done,
-  ) => {
+  it("superoak(app): should follow redirects when instructed", async (done) => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", (ctx: RouterContext) => {
+    router.get("/", (ctx) => {
       ctx.response.body = "Smudgie";
     });
 
-    router.get("/redirect", (ctx: RouterContext) => {
+    router.get("/redirect", (ctx) => {
       ctx.response.redirect("/");
     });
 
@@ -214,10 +196,9 @@ describe("superoak(app)", () => {
     const router = new Router();
     const app = new Application();
 
-    router.post("/", async (ctx: RouterContext) => {
-      if (ctx.request.hasBody) {
-        ctx.response.body = await ctx.request.body();
-      }
+    router.post("/", async (ctx) => {
+      const result = await ctx.request.body();
+      ctx.response.body = result.type === "json" ? await result.value : null;
     });
 
     app.use(router.routes());
@@ -236,7 +217,7 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "superoak FTW!";
       });
 
@@ -263,7 +244,7 @@ describe("superoak(app)", () => {
     //   const router = new Router();
     //   const app = new Application();
 
-    //   router.get("/", (ctx: RouterContext) => {
+    //   router.get("/", (ctx) => {
     //     ctx.response.body = "superoak FTW!";
     //   });
 
@@ -286,13 +267,11 @@ describe("superoak(app)", () => {
     //     });
     // });
 
-    it("superoak(app): .end(fn): should support nested requests if create a new superoak instance", async (
-      done,
-    ) => {
+    it("superoak(app): .end(fn): should support nested requests if create a new superoak instance", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "superoak FTW!";
       });
 
@@ -317,13 +296,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .end(fn): should include the response in the error callback", async (
-      done,
-    ) => {
+    it("superoak(app): .end(fn): should include the response in the error callback", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "whatever";
       });
 
@@ -345,13 +322,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .end(fn): should set `this` to the test object when calling the error callback", async (
-      done,
-    ) => {
+    it("superoak(app): .end(fn): should set `this` to the test object when calling the error callback", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "whatever";
       });
 
@@ -369,27 +344,30 @@ describe("superoak(app)", () => {
       });
     });
 
-    it("superoak(app): .end(fn): should handle an undefined Response", async (
-      done,
-    ) => {
+    it("superoak(app): .end(fn): should handle an undefined Response", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", async (ctx: RouterContext) => {
-        await new Promise((resolve) => {
+      let responsePromise: Promise<boolean>;
+
+      router.get("/", async (ctx) => {
+        responsePromise = new Promise((resolve) => {
           setTimeout(() => {
             ctx.response.body = "";
             resolve(true);
           }, 20);
         });
+
+        await responsePromise;
       });
 
       app.use(router.routes());
       app.use(router.allowedMethods());
 
       (await superoak(app)).get("/").timeout(1)
-        .expect(200, (err, _res) => {
+        .expect(200, async (err, _res) => {
           expect(err).toBeInstanceOf(Error);
+          await responsePromise;
           done();
         });
     });
@@ -398,13 +376,11 @@ describe("superoak(app)", () => {
   });
 
   describe(".expect(status[, fn])", () => {
-    it("superoak(app): .expect(status[, fn]): should assert the response status", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(status[, fn]): should assert the response status", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
@@ -422,13 +398,11 @@ describe("superoak(app)", () => {
   });
 
   describe(".expect(status)", () => {
-    it("superoak(app): .expect(status): should assert only status", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(status): should assert only status", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
@@ -443,13 +417,11 @@ describe("superoak(app)", () => {
   });
 
   describe(".expect(status, body[, fn])", () => {
-    it("superoak(app): .expect(status, body[, fn]): should assert the response body and status", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(status, body[, fn]): should assert the response body and status", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "foo";
       });
 
@@ -462,13 +434,11 @@ describe("superoak(app)", () => {
     });
 
     describe("when the body argument is an empty string", () => {
-      it("superoak(app): .expect(status, body[, fn]): should not quietly pass on failure", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(status, body[, fn]): should not quietly pass on failure", async (done) => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", (ctx: RouterContext) => {
+        router.get("/", (ctx) => {
           ctx.response.body = "foo";
         });
 
@@ -487,13 +457,11 @@ describe("superoak(app)", () => {
   });
 
   describe(".expect(body[, fn])", () => {
-    it("superoak(app): .expect(body[, fn]): should assert the response body", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should assert the response body", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -511,13 +479,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(body[, fn]): should assert the status before the body", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should assert the status before the body", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.status = 500;
         ctx.response.body = { message: "something went wrong" };
       });
@@ -537,13 +503,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(body[, fn]): should assert the response text", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should assert the response text", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -555,13 +519,11 @@ describe("superoak(app)", () => {
         .expect('{"foo":"bar"}', done);
     });
 
-    it("superoak(app): .expect(body[, fn]): should assert the parsed response body", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should assert the parsed response body", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -583,13 +545,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(body[, fn]): should test response object types", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should test response object types", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.status = 200;
         ctx.response.body = { stringValue: "foo", numberValue: 3 };
       });
@@ -602,13 +562,11 @@ describe("superoak(app)", () => {
         .expect({ stringValue: "foo", numberValue: 3 }, done);
     });
 
-    it("superoak(app): .expect(body[, fn]): should deep test response object types", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should deep test response object types", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.status = 200;
         ctx.response.body = {
           stringValue: "foo",
@@ -647,13 +605,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(body[, fn]): should support regular expressions", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should support regular expressions", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "foobar";
       });
 
@@ -670,13 +626,11 @@ describe("superoak(app)", () => {
     });
   });
 
-  it("superoak(app): .expect(body[, fn]): should assert response body multiple times", async (
-    done,
-  ) => {
+  it("superoak(app): .expect(body[, fn]): should assert response body multiple times", async (done) => {
     const router = new Router();
     const app = new Application();
 
-    router.get("/", (ctx: RouterContext) => {
+    router.get("/", (ctx) => {
       ctx.response.body = "hey deno";
     });
 
@@ -695,13 +649,11 @@ describe("superoak(app)", () => {
         done();
       });
 
-    it("superoak(app): .expect(body[, fn]): should assert response body multiple times with no exception", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(body[, fn]): should assert response body multiple times with no exception", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey deno";
       });
 
@@ -717,13 +669,11 @@ describe("superoak(app)", () => {
   });
 
   describe(".expect(field, value[, fn])", () => {
-    it("superoak(app): .expect(field, value[, fn]): should assert the header field presence", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(field, value[, fn]): should assert the header field presence", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -739,13 +689,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(field, value[, fn]): should assert the header field value", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(field, value[, fn]): should assert the header field value", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = { foo: "bar" };
       });
 
@@ -763,13 +711,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(field, value[, fn]): should assert multiple fields", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(field, value[, fn]): should assert multiple fields", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
@@ -783,13 +729,11 @@ describe("superoak(app)", () => {
         .end(done);
     });
 
-    it("superoak(app): .expect(field, value[, fn]): should support regular expressions", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(field, value[, fn]): should support regular expressions", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
@@ -807,13 +751,11 @@ describe("superoak(app)", () => {
         });
     });
 
-    it("superoak(app): .expect(field, value[, fn]): should support numbers", async (
-      done,
-    ) => {
+    it("superoak(app): .expect(field, value[, fn]): should support numbers", async (done) => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
@@ -835,16 +777,14 @@ describe("superoak(app)", () => {
       const router = new Router();
       const app = new Application();
 
-      router.get("/", (ctx: RouterContext) => {
+      router.get("/", (ctx) => {
         ctx.response.body = "hey";
       });
 
       app.use(router.routes());
       app.use(router.allowedMethods());
 
-      it("superoak(app): .expect(field, value[, fn]): reports errors", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): reports errors", async (done) => {
         (await superoak(app)).get("/")
           .expect((_res) => {
             throw new Error("failed");
@@ -869,9 +809,7 @@ describe("superoak(app)", () => {
         },
       );
 
-      it("superoak(app): .expect(field, value[, fn]): ensures truthy errors returned from asserts are throw to end", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): ensures truthy errors returned from asserts are throw to end", async (done) => {
         (await superoak(app)).get("/")
           .expect((_res) => {
             return new Error("some descriptive error");
@@ -883,18 +821,14 @@ describe("superoak(app)", () => {
           });
       });
 
-      it("superoak(app): .expect(field, value[, fn]): doesn't create false negatives", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): doesn't create false negatives", async (done) => {
         (await superoak(app)).get("/")
           .expect((_res) => {
           })
           .end(done);
       });
 
-      it("superoak(app): .expect(field, value[, fn]): handles multiple asserts", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): handles multiple asserts", async (done) => {
         const calls: number[] = [];
 
         (await superoak(app)).get("/")
@@ -916,9 +850,7 @@ describe("superoak(app)", () => {
           });
       });
 
-      it("superoak(app): .expect(field, value[, fn]): plays well with normal assertions - no false positives", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): plays well with normal assertions - no false positives", async (done) => {
         (await superoak(app)).get("/")
           .expect((_res) => {
           })
@@ -929,9 +861,7 @@ describe("superoak(app)", () => {
           });
       });
 
-      it("superoak(app): .expect(field, value[, fn]): plays well with normal assertions - no false negatives", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): plays well with normal assertions - no false negatives", async (done) => {
         (await superoak(app)).get("/")
           .expect((_res) => {
           })
@@ -944,13 +874,11 @@ describe("superoak(app)", () => {
     });
 
     describe("handling multiple assertions per field", () => {
-      it("superoak(app): .expect(field, value[, fn]): should work", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): should work", async (done) => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", (ctx: RouterContext) => {
+        router.get("/", (ctx) => {
           ctx.response.body = "hey";
         });
 
@@ -964,13 +892,11 @@ describe("superoak(app)", () => {
           .end(done);
       });
 
-      it("superoak(app): .expect(field, value[, fn]): should return an error if the first one fails", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): should return an error if the first one fails", async (done) => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", (ctx: RouterContext) => {
+        router.get("/", (ctx) => {
           ctx.response.body = "hey";
         });
 
@@ -990,13 +916,11 @@ describe("superoak(app)", () => {
           });
       });
 
-      it("superoak(app): .expect(field, value[, fn]): should return an error if a middle one fails", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): should return an error if a middle one fails", async (done) => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", (ctx: RouterContext) => {
+        router.get("/", (ctx) => {
           ctx.response.body = "hey";
         });
 
@@ -1017,13 +941,11 @@ describe("superoak(app)", () => {
           });
       });
 
-      it("superoak(app): .expect(field, value[, fn]): should return an error if the last one fails", async (
-        done,
-      ) => {
+      it("superoak(app): .expect(field, value[, fn]): should return an error if the last one fails", async (done) => {
         const router = new Router();
         const app = new Application();
 
-        router.get("/", (ctx: RouterContext) => {
+        router.get("/", (ctx) => {
           ctx.response.body = "hey";
         });
 

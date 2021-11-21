@@ -1,5 +1,10 @@
 # ChangeLog
 
+## [4.5.0] - 21-11-2021
+
+- feat: Support Deno `1.16.2` and std `0.115.1` and other deps upgrades
+- feat: Support `oak@v10.0.0`
+
 ## [4.4.0] - 13-07-2021
 
 - feat: Support Deno `1.12.0` and std `0.101.0` and other deps upgrades

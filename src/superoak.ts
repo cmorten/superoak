@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-explicit-any
 
-import { getFreePort, Server, SuperDeno, superdeno } from "../deps.ts";
+import { getFreePort, SuperDeno, superdeno } from "../deps.ts";
 
 /**
  * Generates a random number between min and max
@@ -66,21 +66,21 @@ export async function superoak(
             secure: boolean;
           },
         ) => {
-          const serverSham: Server = Object.create(Server.prototype);
+          const serverSham = {
+            async listenAndServe() {},
+            async close() {
+              controller.abort();
 
-          serverSham.close = async () => {
-            controller.abort();
-
-            if (listenPromise) {
-              await listenPromise;
-            }
-          };
-
-          (serverSham.listener as Pick<Deno.Listener, "addr">) = {
-            addr: {
-              port,
-              hostname: hostname as string,
-              transport: "tcp",
+              if (listenPromise) {
+                await listenPromise;
+              }
+            },
+            get addrs() {
+              return [{
+                port,
+                hostname: hostname as string,
+                transport: "tcp" as const,
+              }];
             },
           };
 
