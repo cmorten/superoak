@@ -212,6 +212,35 @@ describe("superoak(app)", () => {
       });
   });
 
+  it("superoak(app): should support application/x-www-form-urlencoded", async (done) => {
+    const router = new Router();
+    const app = new Application();
+
+    router.post("/", async (ctx) => {
+      const body = ctx.request.body({ type: "form" });
+      const urlSearchParams = await body.value;
+
+      const entries = urlSearchParams.entries();
+      const data = [...entries].reduce((acc, [key, value]) => ({...acc, [key]: value}), {});
+    
+      ctx.response.body = data;
+    });
+
+    app.use(router.routes());
+    app.use(router.allowedMethods());
+
+    (await superoak(app))
+      .post("/")
+      .type("form")
+      .field("hello", "world")
+      .field("foo", "bar")
+      .then((res) => {
+        expect(res.body).toEqual({hello: "world", foo: "bar"});
+        expect(res.status).toEqual(200);
+        done();
+      });
+  })
+
   describe(".end(fn)", () => {
     it("superoak(app): .end(fn): should close server", async (done) => {
       const router = new Router();
