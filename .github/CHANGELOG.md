@@ -1,5 +1,11 @@
 # ChangeLog
 
+## [4.6.0] - 05-01-2022
+
+- feat: Support Deno `1.17.1` and std `0.119.0` and other deps upgrades
+- docs: Add `nested-assertions` example
+- chore: Migrate from `asos-craigmorten` to `cmorten`
+
 ## [4.5.0] - 21-11-2021
 
 - feat: Support Deno `1.16.2` and std `0.115.1` and other deps upgrades

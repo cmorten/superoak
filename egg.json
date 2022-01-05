@@ -1,8 +1,8 @@
 {
   "name": "superoak",
   "description": "HTTP assertions for Oak made easy via SuperDeno.",
-  "version": "4.5.0",
-  "repository": "https://github.com/asos-craigmorten/superoak",
+  "version": "4.6.0",
+  "repository": "https://github.com/cmorten/superoak",
   "stable": true,
   "checkFormat": false,
   "checkTests": false,

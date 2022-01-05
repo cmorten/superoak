@@ -1,24 +1,24 @@
 <p align="center">
-  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/asos-craigmorten/superoak/raw/main/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
+  <a href="https://www.linkedin.com/in/hannah-morten-b1218017a/"><img height="200" style="height: 200px;" src="https://github.com/cmorten/superoak/raw/main/.github/icon.png" alt="Super Oak standing in the rain at night – stoically facing the dark battle that is software engineering"></a>
   <h1 align="center">SuperOak</h1>
 </p>
 <p align="center">
-  HTTP assertions for Deno's Oak web framework made easy via <a href="https://github.com/asos-craigmorten/superdeno">SuperDeno</a>.
+  HTTP assertions for Deno's Oak web framework made easy via <a href="https://github.com/cmorten/superdeno">SuperDeno</a>.
 </p>
 <p align="center">
-   <a href="https://github.com/asos-craigmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/asos-craigmorten/superoak" alt="Current version" /></a>
-   <img src="https://github.com/asos-craigmorten/superoak/workflows/Test/badge.svg" alt="Current test status" />
+   <a href="https://github.com/cmorten/superoak/tags/"><img src="https://img.shields.io/github/tag/cmorten/superoak" alt="Current version" /></a>
+   <img src="https://github.com/cmorten/superoak/workflows/Test/badge.svg" alt="Current test status" />
    <a href="https://doc.deno.land/https/deno.land/x/superoak/mod.ts"><img src="https://doc.deno.land/badge.svg" alt="SuperOak docs" /></a>
    <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs are welcome" /></a>
-   <a href="https://github.com/asos-craigmorten/superoak/issues/"><img src="https://img.shields.io/github/issues/asos-craigmorten/superoak" alt="SuperOak issues" /></a>
-   <img src="https://img.shields.io/github/stars/asos-craigmorten/superoak" alt="SuperOak stars" />
-   <img src="https://img.shields.io/github/forks/asos-craigmorten/superoak" alt="SuperOak forks" />
-   <img src="https://img.shields.io/github/license/asos-craigmorten/superoak" alt="SuperOak license" />
-   <a href="https://GitHub.com/asos-craigmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
+   <a href="https://github.com/cmorten/superoak/issues/"><img src="https://img.shields.io/github/issues/cmorten/superoak" alt="SuperOak issues" /></a>
+   <img src="https://img.shields.io/github/stars/cmorten/superoak" alt="SuperOak stars" />
+   <img src="https://img.shields.io/github/forks/cmorten/superoak" alt="SuperOak forks" />
+   <img src="https://img.shields.io/github/license/cmorten/superoak" alt="SuperOak license" />
+   <a href="https://GitHub.com/cmorten/superoak/graphs/commit-activity"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" alt="SuperOak is maintained" /></a>
 </p>
 <p align="center">
    <a href="https://deno.land/x/superoak"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.16.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.17.1-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
@@ -45,7 +45,7 @@
 
 This module aims to provide a high-level abstraction for testing HTTP in Deno's
 Oak web framework. This is a wrapper compatibility layer around
-[SuperDeno](https://github.com/asos-craigmorten/superdeno) to reduce some of the
+[SuperDeno](https://github.com/cmorten/superdeno) to reduce some of the
 boilerplate needed to setup Oak integration + functional tests.
 
 ## Installation
@@ -64,7 +64,7 @@ import { superoak } from "https://deno.land/x/superoak/mod.ts";
 SuperOak is also available on [nest.land](https://nest.land/package/superoak), a
 package registry for Deno on the Blockchain.
 
-> Note: All examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.5.0/mod.ts`.
+> Note: All examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.6.0/mod.ts`.
 
 ## Example
 
@@ -113,31 +113,31 @@ Save the above to a file `demo.test.ts` and test it using
 `deno test --allow-net demo.test.ts`.
 
 For further examples, see the
-[SuperOak examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md),
-[tests](https://github.com/asos-craigmorten/superoak/blob/main/test/superoak.test.ts)
+[SuperOak examples](https://github.com/cmorten/superoak/blob/main/examples/README.md),
+[tests](https://github.com/cmorten/superoak/blob/main/test/superoak.test.ts)
 or the
-[SuperDeno examples](https://github.com/asos-craigmorten/superdeno#example) for
+[SuperDeno examples](https://github.com/cmorten/superdeno#example) for
 inspiration.
 
 ## Documentation
 
-- [SuperOak Type Docs](https://asos-craigmorten.github.io/superoak/)
+- [SuperOak Type Docs](https://cmorten.github.io/superoak/)
 - [SuperOak Deno Docs](https://doc.deno.land/https/deno.land/x/superoak/mod.ts)
-- [SuperOak Examples](https://github.com/asos-craigmorten/superoak/blob/main/examples/README.md)
-- [License](https://github.com/asos-craigmorten/superoak/blob/main/LICENSE.md)
-- [Changelog](https://github.com/asos-craigmorten/superoak/blob/main/.github/CHANGELOG.md)
+- [SuperOak Examples](https://github.com/cmorten/superoak/blob/main/examples/README.md)
+- [License](https://github.com/cmorten/superoak/blob/main/LICENSE.md)
+- [Changelog](https://github.com/cmorten/superoak/blob/main/.github/CHANGELOG.md)
 
 ## API
 
 Please refer to the
-[SuperDeno API](https://github.com/asos-craigmorten/superdeno#api) and
+[SuperDeno API](https://github.com/cmorten/superdeno#api) and
 [SuperAgent API](https://visionmedia.github.io/superagent/).
 
 ## FAQs
 
 ### `Property 'get' does not exist on type 'Promise<SuperDeno>'` error
 
-Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), `superoak()`
+Unlike [SuperDeno](https://github.com/cmorten/superdeno), `superoak()`
 returns a promise which will need to be awaited before you can call any method
 such as `.get("/")`.
 
@@ -157,7 +157,7 @@ Deno.test("it will allow you to make assertions if you await it", async () => {
 
 ### `Request has been terminated` error
 
-Unlike [SuperDeno](https://github.com/asos-craigmorten/superdeno), you cannot
+Unlike [SuperDeno](https://github.com/cmorten/superdeno), you cannot
 re-use SuperOak instances. If you try you will encounter an error similar to
 below:
 
@@ -201,7 +201,7 @@ Deno.test("it will throw an error if try to re-use a SuperOak instance", async (
 
 ## Contributing
 
-[Contributing guide](https://github.com/asos-craigmorten/superoak/blob/main/.github/CONTRIBUTING.md)
+[Contributing guide](https://github.com/cmorten/superoak/blob/main/.github/CONTRIBUTING.md)
 
 ---
 

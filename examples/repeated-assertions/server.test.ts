@@ -2,7 +2,7 @@ import { superoak } from "../../mod.ts";
 import { app } from "./server.ts";
 
 Deno.test(
-  "it will allow your to make multiple assertions on one SuperOak instance",
+  "it will allow you to make multiple assertions on one SuperOak instance",
   async () => {
     const request = await superoak(app);
 
@@ -11,7 +11,7 @@ Deno.test(
 );
 
 Deno.test(
-  "it will allow your to re-use the Application for another SuperOak instance",
+  "it will allow you to re-use the Application for another SuperOak instance",
   async () => {
     let request = await superoak(app);
 
