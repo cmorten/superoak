@@ -137,8 +137,8 @@
 				ephemeral port and closing of the server on a call to <code>.end()</code>.</p>
 				<p>SuperOak works with any Deno test framework. Here&#39;s an example with Deno&#39;s
 				built-in test framework.</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v10.0.0/mod.ts&quot;</span>;
-<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak/mod.ts&quot;</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Application, Router } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/oak@v10.4.0/mod.ts&quot;</span>;
+<span class="hljs-keyword">import</span> { superoak } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;https://deno.land/x/superoak@4.7.0/mod.ts&quot;</span>;
 
 <span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
 router.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function">(<span class="hljs-params">ctx</span>) =&gt;</span> {
