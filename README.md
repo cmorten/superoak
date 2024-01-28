@@ -18,7 +18,7 @@
 </p>
 <p align="center">
    <a href="https://deno.land/x/superoak"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.19.3-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.40.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
@@ -64,7 +64,7 @@ import { superoak } from "https://deno.land/x/superoak/mod.ts";
 SuperOak is also available on [nest.land](https://nest.land/package/superoak), a
 package registry for Deno on the Blockchain.
 
-> Note: All examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.7.0/mod.ts`.
+> Note: All examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.8.0/mod.ts`.
 
 ## Example
 
@@ -78,7 +78,7 @@ built-in test framework.
 
 ```ts
 import { Application, Router } from "https://deno.land/x/oak@v10.4.0/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@4.7.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@4.8.0/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
@@ -102,7 +102,8 @@ Deno.test("it should support the Oak framework", async () => {
 // https://visionmedia.github.io/superagent/#post--put-requests.
 Deno.test("it should allow post requests", async () => {
   const request = await superoak(app);
-  await request.post("/user")
+  await request
+    .post("/user")
     .set("Content-Type", "application/json")
     .send('{"name":"superoak"}')
     .expect(200);
@@ -177,26 +178,35 @@ create a new SuperOak instance for subsequent assertions like below:
 
 ```ts
 // ✅ works
-Deno.test("it will allow you to make multiple assertions on one SuperOak instance", async () => {
-  const request = await superoak(app);
-  await request.get("/").expect(200).expect("Hello Deno!");
-});
+Deno.test(
+  "it will allow you to make multiple assertions on one SuperOak instance",
+  async () => {
+    const request = await superoak(app);
+    await request.get("/").expect(200).expect("Hello Deno!");
+  }
+);
 
 // ✅ works
-Deno.test("it will allow you to re-use the Application for another SuperOak instance", async () => {
-  const request1 = await superoak(app);
-  await request1.get("/").expect(200);
+Deno.test(
+  "it will allow you to re-use the Application for another SuperOak instance",
+  async () => {
+    const request1 = await superoak(app);
+    await request1.get("/").expect(200);
 
-  const request2 = await superoak(app);
-  await request2.get("/").expect("Hello Deno!");
-});
+    const request2 = await superoak(app);
+    await request2.get("/").expect("Hello Deno!");
+  }
+);
 
 // ❌ won't work
-Deno.test("it will throw an error if try to re-use a SuperOak instance", async () => {
-  const request = await superoak(app);
-  await request.get("/").expect(200);
-  await request.get("/").expect("Hello Deno!"); // Boom 💥 `Error: Request has been terminated`
-});
+Deno.test(
+  "it will throw an error if try to re-use a SuperOak instance",
+  async () => {
+    const request = await superoak(app);
+    await request.get("/").expect(200);
+    await request.get("/").expect("Hello Deno!"); // Boom 💥 `Error: Request has been terminated`
+  }
+);
 ```
 
 ## Contributing
