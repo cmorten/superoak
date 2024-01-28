@@ -64,7 +64,7 @@ import { superoak } from "https://deno.land/x/superoak/mod.ts";
 SuperOak is also available on [nest.land](https://nest.land/package/superoak), a
 package registry for Deno on the Blockchain.
 
-> Note: All examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.8.0/mod.ts`.
+> Note: Some examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.8.1/mod.ts`.
 
 ## Example
 
@@ -78,7 +78,7 @@ built-in test framework.
 
 ```ts
 import { Application, Router } from "https://deno.land/x/oak@v12.6.2/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@4.8.0/mod.ts";
+import { superoak } from "https://deno.land/x/superoak@4.8.1/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {
