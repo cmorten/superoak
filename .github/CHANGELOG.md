@@ -1,5 +1,7 @@
 # ChangeLog
 
+For the latest changes, please refer to the [releases page](https://github.com/cmorten/superoak/releases).
+
 ## [4.7.0] - 12-03-2022
 
 - feat: Support Deno `1.19.3` and std `0.129.0` and other deps upgrades

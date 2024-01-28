@@ -590,7 +590,7 @@ describe("superoak(app)", () => {
         )
         .end(async (err, _res) => {
           expect(err.message).toEqual(
-            'expected { stringValue: "foo", numberValue: 3, nestedObject: { innerString: 5 } } response body, got { stringValue: "foo", numberValue: 3, nestedObject: { innerString: "5" } }',
+            'expected {\n  stringValue: "foo",\n  numberValue: 3,\n  nestedObject: { innerString: 5 }\n} response body, got {\n  stringValue: "foo",\n  numberValue: 3,\n  nestedObject: { innerString: "5" }\n}',
           ); // eslint-disable-line max-len
 
           (await superoak(app))
@@ -706,7 +706,7 @@ describe("superoak(app)", () => {
         .expect("Content-Type", "text/plain")
         .end((err, _res) => {
           expect(err.message).toEqual(
-            'expected "Content-Type" of "text/plain", got "application/json; charset=utf-8"',
+            'expected "Content-Type" of "text/plain", got "application/json; charset=UTF-8"',
           );
           done();
         });
@@ -725,7 +725,7 @@ describe("superoak(app)", () => {
 
       (await superoak(app))
         .get("/")
-        .expect("Content-Type", "text/plain; charset=utf-8")
+        .expect("Content-Type", "text/plain; charset=UTF-8")
         .expect("Content-Length", "3")
         .end(done);
     });
@@ -746,7 +746,7 @@ describe("superoak(app)", () => {
         .expect("Content-Type", /^application/)
         .end((err) => {
           expect(err.message).toEqual(
-            'expected "Content-Type" matching /^application/, got "text/plain; charset=utf-8"',
+            'expected "Content-Type" matching /^application/, got "text/plain; charset=UTF-8"',
           );
           done();
         });
@@ -911,7 +911,7 @@ describe("superoak(app)", () => {
           .end((err) => {
             expect(err.message).toEqual(
               'expected "Content-Type" matching /bloop/, ' +
-                'got "text/plain; charset=utf-8"',
+                'got "text/plain; charset=UTF-8"',
             );
             done();
           });
@@ -936,7 +936,7 @@ describe("superoak(app)", () => {
           .end((err) => {
             expect(err.message).toEqual(
               'expected "Content-Type" matching /bloop/, ' +
-                'got "text/plain; charset=utf-8"',
+                'got "text/plain; charset=UTF-8"',
             );
             done();
           });
@@ -961,7 +961,7 @@ describe("superoak(app)", () => {
           .end((err) => {
             expect(err.message).toEqual(
               'expected "Content-Type" matching /bloop/, ' +
-                'got "text/plain; charset=utf-8"',
+                'got "text/plain; charset=UTF-8"',
             );
             done();
           });

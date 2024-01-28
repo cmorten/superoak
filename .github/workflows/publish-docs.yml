@@ -10,16 +10,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12
+      - name: Use Node.js 20
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 20
       - name: Install deps
         run: make deps
       - name: Use Deno
         uses: denolib/setup-deno@v2
         with:
-          deno-version: 1.19.3
+          deno-version: 1.40.2
       - run: make typedoc
       - run: make ci
       - name: Publish Updated Type Docs
