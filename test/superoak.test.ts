@@ -30,7 +30,7 @@ describe("superoak(url)", () => {
         });
     });
 
-    await app.listen(
+    app.listen(
       { hostname: "localhost", port: await getFreePort(1024), signal },
     );
   });
@@ -65,7 +65,7 @@ describe("superoak(url)", () => {
         },
       );
 
-      await app.listen(
+      app.listen(
         { hostname: "localhost", port: await getFreePort(1024), signal },
       );
     });
@@ -101,7 +101,7 @@ describe("superoak(url)", () => {
         },
       );
 
-      await app.listen(
+      app.listen(
         { hostname: "localhost", port: await getFreePort(1024), signal },
       );
     });
@@ -197,8 +197,8 @@ describe("superoak(app)", () => {
     const app = new Application();
 
     router.post("/", async (ctx) => {
-      const result = await ctx.request.body();
-      ctx.response.body = result.type === "json" ? await result.value : null;
+      const result = await ctx.request.body;
+      ctx.response.body = result.type() === "json" ? await result.json() : null;
     });
 
     app.use(router.routes());
