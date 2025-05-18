@@ -18,7 +18,7 @@
 </p>
 <p align="center">
    <a href="https://deno.land/x/superoak"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Flatest-version%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak latest /x/ version" /></a>
-   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^1.40.2-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
+   <a href="https://github.com/denoland/deno/blob/main/Releases.md"><img src="https://img.shields.io/badge/deno-^2.3.3-brightgreen?logo=deno" alt="Minimum supported Deno version" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fdep-count%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency count" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fupdates%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak dependency outdatedness" /></a>
    <a href="https://deno-visualizer.danopia.net/dependencies-of/https/deno.land/x/superoak/mod.ts"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fdeno-visualizer.danopia.net%2Fshields%2Fcache-size%2Fx%2Fsuperoak%2Fmod.ts" alt="SuperOak cached size" /></a>
@@ -64,7 +64,7 @@ import { superoak } from "https://deno.land/x/superoak/mod.ts";
 SuperOak is also available on [nest.land](https://nest.land/package/superoak), a
 package registry for Deno on the Blockchain.
 
-> Note: Some examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@4.8.1/mod.ts`.
+> Note: Some examples in this README are using the unversioned form of the import URL. In production you should always use the versioned import form such as `https://deno.land/x/superoak@5.0.0/mod.ts`.
 
 ## Example
 
@@ -77,8 +77,8 @@ SuperOak works with any Deno test framework. Here's an example with Deno's
 built-in test framework.
 
 ```ts
-import { Application, Router } from "https://deno.land/x/oak@v12.6.2/mod.ts";
-import { superoak } from "https://deno.land/x/superoak@4.8.1/mod.ts";
+import { Application, Router } from "jsr:@oak/oak@^17.1.4";
+import { superoak } from "https://deno.land/x/superoak@5.0.0/mod.ts";
 
 const router = new Router();
 router.get("/", (ctx) => {

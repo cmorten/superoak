@@ -50,11 +50,10 @@ export async function superoak(
 ): Promise<SuperDeno> {
   if (isOakApplication(app)) {
     const controller = new AbortController();
-    const { signal } = controller;
-
     const freePort = await getFreePort(random(1024, 49151));
 
     let listenPromise: Promise<any>;
+    let closePromise: Promise<any>;
 
     return new Promise((resolve) => {
       app.addEventListener(
@@ -70,6 +69,10 @@ export async function superoak(
             async listenAndServe() {},
             async close() {
               controller.abort();
+
+              if (closePromise) {
+                await closePromise;
+              }
 
               if (listenPromise) {
                 await listenPromise;
@@ -88,8 +91,14 @@ export async function superoak(
         },
       );
 
+      closePromise = new Promise<void>(
+        (resolve) => {
+          app.addEventListener("close", () => resolve());
+        },
+      );
+
       listenPromise = app.listen(
-        { hostname: "127.0.0.1", port: freePort, signal },
+        { hostname: "127.0.0.1", port: freePort, signal: controller.signal },
       );
     });
   }

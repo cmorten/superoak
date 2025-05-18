@@ -3,7 +3,7 @@
 FILES_TO_FORMAT = ./src ./test ./deps.ts ./mod.ts ./version.ts ./lock.json
 
 build:
-	@deno run --allow-net="deno.land" --reload mod.ts
+	@deno run --allow-net="deno.land" --allow-import --reload mod.ts
 
 ci:
 	@make fmt-check
@@ -27,7 +27,7 @@ lint:
 	@deno lint ${FILES_TO_FORMAT}
 
 lock:
-	@deno run --allow-net --lock=lock.json --lock-write --reload mod.ts
+	@deno run --allow-net --lock=lock.json --allow-import --reload mod.ts
 
 precommit:
 	@make lock
@@ -36,7 +36,7 @@ precommit:
 	@make fmt
 
 test:
-	@deno test --allow-net --allow-read --allow-env
+	@deno test --allow-net --allow-read --allow-env --allow-import
 
 typedoc:
 	@rm -rf docs

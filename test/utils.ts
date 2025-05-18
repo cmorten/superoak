@@ -13,7 +13,7 @@ export function describe(_name: string, fn: () => void | Promise<void>) {
   return fn();
 }
 
-export type Done = (err?: Error) => void;
+export type Done = (err?: unknown) => void;
 
 /**
  * An _it_ wrapper around `Deno.test`.
@@ -30,11 +30,16 @@ export function it(
     ...options,
     name,
     fn: async () => {
-      let done: Done = (err?: Error) => {
-        if (err) throw err;
+      let testError: unknown;
+
+      let done: Done = (err?: unknown) => {
+        if (err) {
+          testError = err;
+        }
       };
 
       let race: Promise<unknown> = Promise.resolve();
+      let timeoutId: number;
 
       if (fn.length === 1) {
         let resolve: (value?: unknown) => void;
@@ -42,11 +47,11 @@ export function it(
           resolve = r;
         });
 
-        let timeoutId: number;
-
         race = Promise.race([
           new Promise((_, reject) =>
             timeoutId = setTimeout(() => {
+              clearTimeout(timeoutId);
+
               reject(
                 new Error(
                   `test "${name}" failed to complete by calling "done" within ${TEST_TIMEOUT}ms.`,
@@ -57,15 +62,28 @@ export function it(
           donePromise,
         ]);
 
-        done = (err?: Error) => {
+        done = (err?: unknown) => {
           clearTimeout(timeoutId);
           resolve();
-          if (err) throw err;
+
+          if (err) {
+            testError = err;
+          }
         };
       }
 
-      await fn(done);
-      await race;
+      await Promise.allSettled([fn(done), race]);
+
+      if (timeoutId!) {
+        clearTimeout(timeoutId);
+      }
+
+      // REF: https://github.com/denoland/deno/blob/987716798fb3bddc9abc7e12c25a043447be5280/ext/timers/01_timers.js#L353
+      await new Promise((resolve) => setTimeout(resolve, 20));
+
+      if (testError) {
+        throw testError;
+      }
     },
   });
 }
