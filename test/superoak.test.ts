@@ -2,6 +2,7 @@ import { Application, expect, isFreePort, Router } from "./deps.ts";
 import { getFreePort, Test } from "../deps.ts";
 import { describe, it } from "./utils.ts";
 import { superoak } from "../mod.ts";
+import { FETCH_BLOCKED_PORTS, getFreeFetchablePort } from "../src/superoak.ts";
 
 describe("superoak(url)", () => {
   it("superoak(url): should support `superoak(url)` if consumer wants to handle server themselves", async (done) => {
@@ -967,5 +968,16 @@ describe("superoak(app)", () => {
           });
       });
     });
+  });
+});
+
+describe("superoak port selection", () => {
+  it("superoak: should never pick a port that fetch refuses to connect to", async (done) => {
+    for (let i = 0; i < 2000; i++) {
+      const port = await getFreeFetchablePort();
+      expect(FETCH_BLOCKED_PORTS.has(port)).toEqual(false);
+    }
+
+    done();
   });
 });
