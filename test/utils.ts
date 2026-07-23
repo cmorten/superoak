@@ -39,7 +39,7 @@ export function it(
       };
 
       let race: Promise<unknown> = Promise.resolve();
-      let timeoutId: number;
+      let timeoutId: ReturnType<typeof setTimeout>;
 
       if (fn.length === 1) {
         let resolve: (value?: unknown) => void;
